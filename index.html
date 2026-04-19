@@ -2,113 +2,45 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>NEXUS — Private Terminal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.12/dist/face-api.min.js"></script>
-
 <style>
 :root {
-  --display: 'Sora', system-ui, sans-serif;
-  --sans:    'Inter', system-ui, sans-serif;
-  --mono:    'DM Mono', monospace;
-
-  /* DARK (default) */
-  --bg:         #111009;
-  --bg-alt:     #1a1815;
-  --bg-sec:     #161410;
-  --text:       #EEEAE0;
-  --text-b:     #C2BEB4;
-  --text-m:     #918D85;
-  --text-f:     #5C5955;
-  --border:     #2a2820;
-  --bsoft:      #221f1c;
-
-  --accent:     #7ba4d4;
-  --acg:        rgba(123,164,212,.12);
-  --gold:       #c4aa7a;
-  --goldg:      rgba(196,170,122,.12);
-  --golds:      rgba(196,170,122,.06);
-  --goldd:      #a08a5a;
-
-  --red:        #e85454;
-  --green:      #3fc87a;
-  --amber:      #f5a623;
-
-  --ease:       cubic-bezier(.16,1,.3,1);
-  --spring:     cubic-bezier(.175,.885,.32,1.275);
-  --r1:4px; --r2:8px; --r3:14px; --r4:20px; --r5:28px;
+  --display:'Sora',system-ui,sans-serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'DM Mono',monospace;
+  --bg:#111009;--bg-alt:#1a1815;--bg-sec:#161410;
+  --text:#EEEAE0;--text-b:#C2BEB4;--text-m:#918D85;--text-f:#5C5955;
+  --border:#2a2820;--bsoft:#221f1c;
+  --accent:#7ba4d4;--acg:rgba(123,164,212,.12);
+  --gold:#c4aa7a;--goldg:rgba(196,170,122,.12);--golds:rgba(196,170,122,.06);--goldd:#a08a5a;
+  --red:#e85454;--green:#3fc87a;--amber:#f5a623;
+  --ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.175,.885,.32,1.275);
+  --r1:4px;--r2:8px;--r3:14px;--r4:20px;--r5:28px;
 }
-[data-theme="light"] {
-  --bg:         #f7f5f0;
-  --bg-alt:     #ffffff;
-  --bg-sec:     #efefeb;
-  --text:       #0F0D0A;
-  --text-b:     #2E2B26;
-  --text-m:     #5A564F;
-  --text-f:     #8A8680;
-  --border:     #dedad3;
-  --bsoft:      #e8e4dc;
-  --accent:     #2a5a9a;
-  --acg:        rgba(42,90,154,.1);
-  --gold:       #b8862a;
-  --goldg:      rgba(184,134,42,.12);
-  --golds:      rgba(184,134,42,.05);
-  --goldd:      #8a6020;
+[data-theme="light"]{
+  --bg:#f7f5f0;--bg-alt:#ffffff;--bg-sec:#efefeb;
+  --text:#0F0D0A;--text-b:#2E2B26;--text-m:#5A564F;--text-f:#8A8680;
+  --border:#dedad3;--bsoft:#e8e4dc;
+  --accent:#2a5a9a;--acg:rgba(42,90,154,.1);
+  --gold:#b8862a;--goldg:rgba(184,134,42,.12);--golds:rgba(184,134,42,.05);--goldd:#8a6020;
 }
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html,body{
-  width:100%;height:100%;overflow:hidden;
-  font-family:var(--sans);font-size:13.5px;font-weight:400;line-height:1.6;
-  background:var(--bg);color:var(--text);
-  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-  text-rendering:optimizeLegibility;
-  transition:background .4s,color .4s;
-  touch-action:manipulation;
-}
-body::before{
-  content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.02;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:256px;
-}
-::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sans);font-size:13.5px;font-weight:400;line-height:1.6;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;transition:background .4s,color .4s;}
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px;}
+::-webkit-scrollbar{width:2px;}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 ::selection{background:var(--goldg);color:var(--gold);}
-
 svg.lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:middle;flex-shrink:0;}
-
-/* ── PAGES ── */
-.page{
-  position:fixed;inset:0;z-index:10;
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity .6s var(--ease),transform .6s var(--ease),filter .6s var(--ease);
-  contain:strict;
-  will-change:transform,opacity;
-}
-.page.out{opacity:0;pointer-events:none;transform:scale(.96) translateY(8px);filter:blur(8px);}
-
-/* ── THEME BTN ── */
-#theme-btn{
-  position:fixed;top:20px;right:20px;z-index:1000;
-  width:36px;height:36px;border-radius:50%;
-  background:var(--bg-alt);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;color:var(--text-m);font-size:16px;transition:all .3s;
-}
+.page{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease);}
+.page.out{opacity:0;pointer-events:none;transform:scale(.94);filter:blur(12px);}
+#theme-btn{position:fixed;top:20px;right:20px;z-index:1000;width:36px;height:36px;border-radius:50%;background:var(--bg-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-m);font-size:16px;transition:all .3s;}
 #theme-btn:hover{border-color:var(--gold);color:var(--gold);transform:rotate(18deg);}
-
-/* ── NOTIFS ── */
 #notif-stack{position:fixed;top:20px;right:66px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;}
-.notif{
-  background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r3);
-  padding:13px 17px;min-width:300px;max-width:380px;display:flex;align-items:flex-start;gap:11px;
-  box-shadow:0 12px 40px rgba(0,0,0,.25);animation:nIn .35s var(--ease);
-  position:relative;overflow:hidden;pointer-events:auto;
-}
+.notif{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r3);padding:13px 17px;min-width:300px;display:flex;align-items:flex-start;gap:11px;box-shadow:0 12px 40px rgba(0,0,0,.25);animation:nIn .4s var(--ease);position:relative;overflow:hidden;}
 .notif::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;}
 .notif.success::before{background:var(--green);}
 .notif.danger::before{background:var(--red);}
@@ -116,75 +48,11 @@ svg.lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:middle;flex-shr
 .notif.info::before{background:var(--accent);}
 @keyframes nIn{from{opacity:0;transform:translateX(24px);}to{opacity:1;transform:none;}}
 .n-ico{width:26px;height:26px;border-radius:var(--r1);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:var(--bg-sec);}
-.notif.success .n-ico{color:var(--green);}
-.notif.danger  .n-ico{color:var(--red);}
-.notif.warning .n-ico{color:var(--amber);}
-.notif.info    .n-ico{color:var(--accent);}
+.notif.success .n-ico{color:var(--green);}.notif.danger .n-ico{color:var(--red);}.notif.warning .n-ico{color:var(--amber);}.notif.info .n-ico{color:var(--accent);}
 .n-title{font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:2px;letter-spacing:-.01em;}
 .n-body{font-size:12px;color:var(--text-m);}
 
-/* ═══ REGISTRATION ═══ */
-.reg-card{
-  position:relative;z-index:5;width:520px;max-width:94vw;
-  background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);
-  padding:44px 42px 38px;
-  box-shadow:0 1px 0 0 var(--bsoft) inset,0 32px 80px rgba(0,0,0,.35);
-  animation:cardUp .7s var(--ease) both;overflow:hidden;
-}
-.reg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5;}
-.reg-steps{display:flex;gap:8px;margin-bottom:28px;}
-.rstep{flex:1;height:3px;background:var(--border);border-radius:2px;transition:background .4s;}
-.rstep.on{background:var(--gold);}
-.reg-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.reg-f{display:flex;flex-direction:column;gap:6px;}
-.reg-f.full{grid-column:1/-1;}
-.reg-l{font-family:var(--mono);font-size:9.5px;color:var(--text-f);letter-spacing:.16em;text-transform:uppercase;}
-.reg-inp{
-  width:100%;padding:13px 16px;background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r2);
-  color:var(--text);font-family:var(--sans);font-size:14px;outline:none;transition:all .28s;
-}
-.reg-inp:focus{border-color:var(--gold);box-shadow:0 0 0 2px var(--golds);}
-.reg-inp::placeholder{color:var(--text-f);font-weight:300;}
-
-.cam-ring{
-  width:200px;height:200px;border-radius:50%;margin:10px auto 16px;position:relative;
-  background:var(--bg-sec);border:2px solid var(--border);overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-}
-.cam-ring video{width:100%;height:100%;object-fit:cover;border-radius:50%;transform:scaleX(-1);}
-.cam-ring::before{content:'';position:absolute;inset:0;border-radius:50%;border:3px solid transparent;border-top-color:var(--gold);animation:cSpin 2s linear infinite;z-index:2;}
-.cam-placeholder{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:var(--display);font-size:48px;color:var(--text-f);z-index:1;
-}
-@keyframes cSpin{to{transform:rotate(360deg);}}
-.cam-hint{text-align:center;font-size:12px;color:var(--text-m);margin-bottom:12px;min-height:18px;}
-.face-strength{display:flex;gap:4px;justify-content:center;margin-bottom:12px;}
-.fbar{width:32px;height:4px;border-radius:2px;background:var(--border);transition:background .3s;}
-.fbar.ok{background:var(--green);}
-
-.reg-cta{
-  width:100%;padding:15px;background:var(--text);border:none;border-radius:var(--r3);
-  color:var(--bg);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;transition:all .25s var(--ease);display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;
-}
-.reg-cta:hover{opacity:.88;transform:translateY(-1px);}
-.reg-cta:active{transform:scale(.98);}
-[data-theme="light"] .reg-cta{color:var(--bg-alt);}
-.reg-cta:disabled{opacity:.4;cursor:not-allowed;transform:none;}
-
-.reg-link{text-align:center;margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--text-m);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:color .3s;}
-.reg-link:hover{color:var(--gold);}
-
-.skip-bio{
-  text-align:center;margin-top:12px;font-family:var(--mono);font-size:9.5px;
-  color:var(--text-f);letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;transition:color .3s;padding:8px;
-}
-.skip-bio:hover{color:var(--gold);}
-
-/* ═══ LOCK SCREEN ═══ */
-#page-safekey{flex-direction:column;gap:20px;}
+/* ── RINGS ── */
 .sk-rings{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0;}
 .sk-ring{position:absolute;border-radius:50%;border:1px solid var(--bsoft);top:50%;left:50%;transform:translate(-50%,-50%);}
 .sk-ring:nth-child(1){width:600px;height:600px;animation:rSpin 55s linear infinite;}
@@ -193,126 +61,113 @@ svg.lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:middle;flex-shr
 .sk-dot{position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--goldg);}
 @keyframes rSpin{to{transform:translate(-50%,-50%) rotate(360deg);}}
 
-.lock-card{
-  position:relative;z-index:5;width:470px;max-width:92vw;
-  background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);
-  padding:52px 48px 44px;
-  box-shadow:0 1px 0 0 var(--bsoft) inset,0 32px 80px rgba(0,0,0,.35);
-  animation:cardUp .6s var(--ease) both;overflow:hidden;
-}
+/* ── LOCK CARD ── */
+.lock-card{position:relative;z-index:5;width:470px;max-width:92vw;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);padding:52px 48px 44px;box-shadow:0 1px 0 0 var(--bsoft) inset,0 32px 80px rgba(0,0,0,.35);animation:cardUp 1s var(--ease) both;overflow:hidden;}
 .lock-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5;}
 @keyframes cardUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:none;}}
-
 .lc-brand{display:flex;align-items:center;gap:14px;margin-bottom:36px;}
-.lc-mark{
-  width:44px;height:44px;border-radius:var(--r2);flex-shrink:0;
-  border:1px solid var(--border);background:var(--bg-sec);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--display);font-size:20px;color:var(--gold);font-weight:700;
-}
+.lc-mark{width:44px;height:44px;border-radius:var(--r2);flex-shrink:0;border:1px solid var(--border);background:var(--bg-sec);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px;color:var(--gold);font-weight:700;}
 .lc-name{font-family:var(--display);font-size:22px;color:var(--text);letter-spacing:.08em;font-weight:600;}
 .lc-sub{font-family:var(--mono);font-size:9.5px;color:var(--text-m);letter-spacing:.24em;text-transform:uppercase;margin-top:3px;}
-
 .lc-headline{font-family:var(--display);font-size:32px;font-weight:300;line-height:1.1;color:var(--text);margin-bottom:10px;letter-spacing:-.02em;}
 .lc-headline em{font-style:italic;color:var(--gold);}
 .lc-desc{font-size:13.5px;color:var(--text-b);line-height:1.75;margin-bottom:30px;}
-
 .lc-flabel{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9.5px;color:var(--text-f);letter-spacing:.18em;text-transform:uppercase;margin-bottom:9px;}
 .lc-rule{flex:1;height:1px;background:var(--border);}
-
-.lc-input{
-  width:100%;padding:16px 22px;
-  background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r3);
-  color:var(--text);font-family:var(--sans);font-size:24px;font-weight:300;
-  letter-spacing:14px;text-align:center;outline:none;transition:all .3s;caret-color:var(--gold);
-}
+.lc-input{width:100%;padding:16px 22px;background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r3);color:var(--text);font-family:var(--sans);font-size:24px;font-weight:300;letter-spacing:14px;text-align:center;outline:none;transition:all .3s;caret-color:var(--gold);}
 .lc-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--golds);}
 .lc-input::placeholder{color:var(--text-f);letter-spacing:10px;}
-
-.lc-hint{
-  margin:16px 0 26px;padding:12px 15px;
-  background:var(--bg-sec);border:1px solid var(--bsoft);border-left:2px solid var(--gold);
-  border-radius:0 var(--r1) var(--r1) 0;font-size:13px;color:var(--text-b);line-height:1.7;
-  display:flex;align-items:center;gap:8px;
-}
+.lc-hint{margin:16px 0 26px;padding:12px 15px;background:var(--bg-sec);border:1px solid var(--bsoft);border-left:2px solid var(--gold);border-radius:0 var(--r1) var(--r1) 0;font-size:13px;color:var(--text-b);line-height:1.7;display:flex;align-items:center;gap:8px;}
 .lc-hint b{color:var(--text);font-weight:600;}
-
-.lc-cta{
-  width:100%;padding:15px;background:var(--text);border:none;border-radius:var(--r3);
-  color:var(--bg);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;transition:all .3s var(--ease);display:flex;align-items:center;justify-content:center;gap:8px;
-}
+.lc-cta{width:100%;padding:15px;background:var(--text);border:none;border-radius:var(--r3);color:var(--bg);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s var(--ease);display:flex;align-items:center;justify-content:center;gap:8px;}
 .lc-cta:hover{opacity:.88;transform:translateY(-1px);}
 .lc-cta:active{transform:scale(.98);}
 [data-theme="light"] .lc-cta{color:var(--bg-alt);}
-
 .lc-error{font-family:var(--mono);font-size:10px;color:var(--red);text-align:center;margin-top:11px;min-height:15px;letter-spacing:.08em;text-transform:uppercase;}
 @keyframes errShake{0%,100%{transform:translateX(0);}20%{transform:translateX(-7px);}40%{transform:translateX(7px);}60%{transform:translateX(-4px);}80%{transform:translateX(4px);}}
 .shake{animation:errShake .45s var(--spring);}
-
 .lc-links{display:flex;justify-content:center;gap:26px;margin-top:20px;}
 .lc-link{font-family:var(--mono);font-size:10px;color:var(--text-m);cursor:pointer;letter-spacing:.14em;text-transform:uppercase;position:relative;padding-bottom:3px;transition:color .3s;}
 .lc-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .35s var(--ease);}
 .lc-link:hover{color:var(--gold);}.lc-link:hover::after{width:100%;}
-
 .loc-pill{position:relative;z-index:5;display:flex;align-items:center;gap:8px;padding:9px 16px;background:var(--bg-alt);border:1px solid var(--border);border-radius:99px;font-family:var(--mono);font-size:9.5px;color:var(--text-m);animation:fadeUp .8s var(--ease) .4s both;}
 .loc-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(63,200,122,.5);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
 
-/* ═══ FACE VERIFY OVERLAY ═══ */
-.face-overlay{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.85);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;transition:opacity .4s;}
-.face-overlay.hidden{opacity:0;pointer-events:none;}
-.face-box{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);padding:38px 32px;width:420px;text-align:center;position:relative;overflow:hidden;}
-.face-box::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4;}
-.face-cam{width:200px;height:200px;border-radius:50%;margin:0 auto 18px;position:relative;overflow:hidden;border:2px solid var(--border);background:var(--bg-sec);}
-.face-cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;transform:scaleX(-1);}
-.face-cam::after{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid var(--gold);opacity:.4;animation:pulseRing 2s infinite;}
-@keyframes pulseRing{0%{transform:scale(1);opacity:.4;}100%{transform:scale(1.1);opacity:0;}}
-.face-status{font-family:var(--mono);font-size:10px;color:var(--text-m);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px;min-height:16px;}
+/* ── REGISTRATION ── */
+#page-register{flex-direction:column;gap:20px;}
+.reg-card{position:relative;z-index:5;width:500px;max-width:94vw;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);padding:44px 44px 38px;box-shadow:0 1px 0 0 var(--bsoft) inset,0 32px 80px rgba(0,0,0,.35);overflow:hidden;animation:cardUp 1s var(--ease) both;}
+.reg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),var(--gold),transparent);opacity:.6;}
+.reg-progress{display:flex;gap:5px;margin-bottom:32px;}
+.rp-step{flex:1;height:3px;border-radius:3px;background:var(--border);transition:background .5s var(--ease);}
+.rp-step.done{background:var(--gold);}
+.rp-step.active{background:var(--accent);animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.5;}}
+.rs{display:none;animation:stepIn .4s var(--ease) both;}
+.rs.active{display:block;}
+@keyframes stepIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.rs-title{font-family:var(--display);font-size:24px;font-weight:300;color:var(--text);letter-spacing:-.02em;margin-bottom:7px;}
+.rs-title em{font-style:italic;color:var(--gold);}
+.rs-sub{font-size:13px;color:var(--text-m);margin-bottom:28px;line-height:1.7;}
+.r-label{font-family:var(--mono);font-size:9.5px;color:var(--text-f);letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px;}
+.r-input{width:100%;padding:13px 16px;background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r3);color:var(--text);font-family:var(--sans);font-size:15px;outline:none;transition:all .3s;margin-bottom:14px;}
+.r-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--golds);}
+.r-input::placeholder{color:var(--text-f);}
+.r-input.code{letter-spacing:14px;font-size:22px;text-align:center;font-weight:300;}
+.r-input.code::placeholder{letter-spacing:8px;}
+.r-btn{width:100%;padding:14px;background:var(--text);border:none;border-radius:var(--r3);color:var(--bg);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .3s var(--ease);margin-top:6px;}
+.r-btn:hover{opacity:.88;transform:translateY(-1px);}
+.r-btn:active{transform:scale(.98);}
+[data-theme="light"] .r-btn{color:var(--bg-alt);}
+.r-btn.sec{background:transparent;border:1px solid var(--border);color:var(--text-m);}
+.r-btn.sec:hover{border-color:var(--text-m);color:var(--text);}
+.r-error{font-family:var(--mono);font-size:10px;color:var(--red);margin-top:8px;letter-spacing:.06em;min-height:14px;}
+.face-enroll{width:180px;height:180px;border-radius:50%;margin:0 auto 20px;position:relative;overflow:hidden;border:2px solid var(--border);background:var(--bg-sec);}
+.face-enroll::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:var(--gold);animation:cSpin 2s linear infinite;z-index:4;}
+@keyframes cSpin{to{transform:rotate(360deg);}}
+.face-enroll video,.face-enroll canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;z-index:2;}
+.face-enroll canvas{z-index:3;}
+.fe-status{font-family:var(--mono);font-size:9.5px;color:var(--text-m);letter-spacing:.16em;text-transform:uppercase;text-align:center;margin-bottom:18px;}
+.fe-success{color:var(--green);}
+.ntfy-box{background:var(--bg-sec);border:1px solid var(--bsoft);border-left:2px solid var(--accent);border-radius:0 var(--r2) var(--r2) 0;padding:14px 16px;margin-bottom:20px;font-size:12.5px;color:var(--text-b);line-height:1.8;}
+.ntfy-box code{font-family:var(--mono);font-size:11px;color:var(--gold);background:var(--bg);padding:1px 5px;border-radius:3px;}
+.done-circle{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--goldg),var(--bg-sec));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:30px;color:var(--gold);box-shadow:0 0 40px var(--goldg);}
+.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 20px;}
+.nk{padding:16px;border:1px solid var(--border);border-radius:var(--r2);background:var(--bg-sec);color:var(--text);font-family:var(--display);font-size:17px;font-weight:600;cursor:pointer;transition:all .22s;display:flex;align-items:center;justify-content:center;}
+.nk:hover{border-color:var(--gold);color:var(--gold);background:var(--bg-alt);transform:translateY(-1px);}
+.nk:active{transform:scale(.97);}
+.pin-dots{display:flex;justify-content:center;gap:14px;margin:8px 0 4px;}
+.pdot{width:13px;height:13px;border-radius:50%;border:1.5px solid var(--border);transition:all .4s var(--spring);}
+.pdot.on{background:var(--gold);border-color:var(--gold);transform:scale(1.3);box-shadow:0 0 14px var(--goldg);}
 
-/* ═══ INTRUDER MODAL ═══ */
-.intruder-modal{background:var(--bg-alt);border:1px solid var(--red);border-radius:var(--r4);padding:36px;width:460px;max-width:92vw;text-align:center;box-shadow:0 32px 80px rgba(232,84,84,.15);position:relative;overflow:hidden;}
-.intruder-modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);}
-.intruder-img{width:220px;height:160px;object-fit:cover;border-radius:var(--r3);border:1px solid var(--border);margin:14px auto;display:block;background:var(--bg-sec);}
-.intruder-title{font-family:var(--display);font-size:20px;color:var(--red);font-weight:600;margin-bottom:6px;}
-.intruder-meta{font-family:var(--mono);font-size:10px;color:var(--text-m);letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px;}
+/* ── FACE VERIFY OVERLAY ── */
+#fv-overlay{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.8);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;transition:opacity .4s;}
+#fv-overlay.hidden{opacity:0;pointer-events:none;}
+.fv-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);padding:40px;width:380px;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,.4);position:relative;overflow:hidden;}
+.fv-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4;}
+.fv-ring{width:200px;height:200px;border-radius:50%;margin:0 auto 20px;position:relative;overflow:hidden;border:2px solid var(--border);background:var(--bg-sec);}
+.fv-ring::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:var(--gold);animation:cSpin 2s linear infinite;z-index:4;}
+.fv-ring video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;z-index:2;transform:scaleX(-1);}
+.fv-title{font-family:var(--display);font-size:20px;font-weight:600;color:var(--text);margin-bottom:6px;letter-spacing:-.02em;}
+.fv-sub{font-size:13px;color:var(--text-m);margin-bottom:18px;}
+.fv-status{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px;color:var(--text-m);}
 
-/* ═══ APP SHELL ═══ */
-.shell{display:grid;grid-template-columns:248px 1fr;width:100vw;height:100vh;padding:14px;gap:12px;contain:layout size;}
-
-/* ── SIDEBAR ── */
-.sb{
-  background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);
-  display:flex;flex-direction:column;overflow:hidden;
-  box-shadow:0 4px 24px rgba(0,0,0,.15);animation:sbIn .6s var(--ease) .1s both;
-  contain:layout paint;
-}
+/* ── SHELL ── */
+.shell{display:grid;grid-template-columns:248px 1fr;width:100vw;height:100vh;padding:14px;gap:12px;}
+.sb{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.15);animation:sbIn .7s var(--ease) .1s both;}
 @keyframes sbIn{from{opacity:0;transform:translateX(-16px);}to{opacity:1;transform:none;}}
-
 .sb-top{padding:22px 18px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
-.sb-mark{
-  width:34px;height:34px;border-radius:var(--r1);flex-shrink:0;
-  border:1px solid var(--border);background:var(--bg-sec);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--display);font-size:15px;color:var(--gold);font-weight:700;
-}
+.sb-mark{width:34px;height:34px;border-radius:var(--r1);flex-shrink:0;border:1px solid var(--border);background:var(--bg-sec);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:15px;color:var(--gold);font-weight:700;}
 .sb-title{font-family:var(--display);font-size:16px;color:var(--text);letter-spacing:-.01em;font-weight:600;}
 .sb-sub{font-family:var(--mono);font-size:9.5px;color:var(--text-m);letter-spacing:.22em;text-transform:uppercase;margin-top:3px;}
-
 .sb-body{flex:1;padding:10px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;}
 .sb-grp{font-family:var(--mono);font-size:9.5px;color:var(--text-f);text-transform:uppercase;letter-spacing:.22em;padding:16px 12px 6px;}
-
-.sb-item{
-  display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--r2);
-  font-size:13px;color:var(--text-m);font-weight:400;
-  cursor:pointer;transition:all .22s var(--ease);border:1px solid transparent;position:relative;
-}
+.sb-item{display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--r2);font-size:13px;color:var(--text-m);font-weight:400;cursor:pointer;transition:all .28s var(--ease);border:1px solid transparent;position:relative;}
 .sb-item svg{font-size:16px;}
 .sb-item:hover{background:var(--bg-sec);color:var(--text);transform:translateX(3px);}
 .sb-item.active{background:var(--bg-sec);color:var(--text);font-weight:600;border-color:var(--border);}
 .sb-item.active::before{content:'';position:absolute;left:0;top:25%;bottom:25%;width:2px;background:var(--gold);border-radius:0 2px 2px 0;}
 .sb-badge{margin-left:auto;background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-family:var(--mono);font-size:9px;font-weight:700;}
-
 .sb-foot{padding:12px;border-top:1px solid var(--border);}
 .sb-user{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:var(--r2);}
 .sb-av{width:32px;height:32px;border-radius:50%;flex-shrink:0;background:var(--bg-sec);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:13px;color:var(--gold);font-weight:700;}
@@ -320,42 +175,19 @@ svg.lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:middle;flex-shr
 .sb-uid{font-family:var(--mono);font-size:9px;color:var(--text-m);letter-spacing:.12em;text-transform:uppercase;margin-top:2px;}
 .lock-ico{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--text-m);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;margin-left:auto;transition:all .28s;}
 .lock-ico:hover{border-color:var(--red);color:var(--red);}
-
-/* ── CONTENT ── */
-.content{
-  display:flex;flex-direction:column;overflow:hidden;
-  background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);
-  box-shadow:0 4px 24px rgba(0,0,0,.12);animation:ctIn .6s var(--ease) .15s both;
-  contain:layout paint;
-}
+.content{display:flex;flex-direction:column;overflow:hidden;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);box-shadow:0 4px 24px rgba(0,0,0,.12);animation:ctIn .7s var(--ease) .2s both;}
 @keyframes ctIn{from{opacity:0;transform:translateX(16px);}to{opacity:1;transform:none;}}
-.panel{position:absolute;inset:0;display:flex;flex-direction:column;transition:all .45s var(--ease);contain:layout paint;}
-.panel.hidden{opacity:0;pointer-events:none;transform:translateX(20px);}
-
-.topbar{
-  height:64px;min-height:64px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;padding:0 28px;gap:10px;position:relative;z-index:2;
-}
+.panel{position:absolute;inset:0;display:flex;flex-direction:column;transition:all .5s var(--ease);}
+.panel.hidden{opacity:0;pointer-events:none;transform:translateX(28px);}
+.topbar{height:64px;min-height:64px;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:10px;position:relative;z-index:2;}
 .topbar::after{content:'';position:absolute;bottom:0;left:28px;right:28px;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
 .t-title{font-family:var(--display);font-size:16px;font-weight:600;color:var(--text);flex:1;letter-spacing:-.01em;}
 .t-tag{font-family:var(--mono);font-size:9.5px;color:var(--text-f);letter-spacing:.16em;text-transform:uppercase;margin-top:4px;}
-.t-btn{
-  display:flex;align-items:center;gap:6px;padding:6px 12px;
-  background:transparent;border:1px solid var(--border);border-radius:var(--r2);
-  color:var(--text-m);font-size:10.5px;font-weight:500;cursor:pointer;
-  transition:all .22s;letter-spacing:.04em;text-transform:uppercase;
-}
+.t-btn{display:flex;align-items:center;gap:6px;padding:6px 12px;background:transparent;border:1px solid var(--border);border-radius:var(--r2);color:var(--text-m);font-size:10.5px;font-weight:500;cursor:pointer;transition:all .28s;letter-spacing:.04em;text-transform:uppercase;}
 .t-btn svg{font-size:14px;}
 .t-btn:hover{background:var(--bg-sec);color:var(--text);border-color:var(--text-m);}
-
-/* ═══ HOME ═══ */
 .home-body{flex:1;overflow-y:auto;padding:26px;display:flex;flex-direction:column;gap:14px;z-index:1;}
-
-.hello-row{
-  background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r4);
-  padding:26px;display:flex;align-items:center;gap:18px;
-  position:relative;overflow:hidden;transition:border-color .3s;contain:layout paint;
-}
+.hello-row{background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r4);padding:26px;display:flex;align-items:center;gap:18px;position:relative;overflow:hidden;transition:border-color .3s;}
 .hello-row::after{content:'';position:absolute;top:0;right:0;width:220px;height:100%;background:radial-gradient(ellipse at 100% 50%,var(--goldg),transparent);pointer-events:none;}
 .hello-row:hover{border-color:var(--text-f);}
 .hello-av{width:56px;height:56px;border-radius:var(--r3);flex-shrink:0;background:var(--bg-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:22px;color:var(--gold);font-weight:700;}
@@ -363,43 +195,31 @@ svg.lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:middle;flex-shr
 .hello-name em{font-style:italic;color:var(--gold);}
 .hello-sub{font-size:12.5px;color:var(--text-m);margin-top:5px;}
 .hello-clock{margin-left:auto;flex-shrink:0;font-family:var(--mono);font-size:17px;color:var(--text);font-weight:400;padding:9px 14px;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r2);letter-spacing:.05em;font-variant-numeric:tabular-nums;}
-
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
-
-.card{
-  background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r4);
-  padding:24px;cursor:pointer;display:flex;flex-direction:column;gap:11px;
-  position:relative;overflow:hidden;transition:all .35s var(--ease);
-  contain:layout paint;
-}
-.card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--goldd),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease);}
-.card:hover{border-color:var(--text-f);transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,.12);}
+.card{background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r4);padding:24px;cursor:pointer;display:flex;flex-direction:column;gap:11px;position:relative;overflow:hidden;transition:all .45s var(--ease);}
+.card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--goldd),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);}
+.card:hover{border-color:var(--text-f);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.15);}
 .card:hover::after{transform:scaleX(1);}
 .card:hover .card-ico svg{color:var(--gold);}
-.card:hover .card-arr svg{color:var(--gold);}
-
 .card-ey{font-family:var(--mono);font-size:9.5px;color:var(--text-f);letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
 .card-ey::after{content:'';flex:1;height:1px;background:var(--border);}
 .card-ico{width:42px;height:42px;border-radius:var(--r2);background:var(--bg-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:19px;color:var(--text-m);transition:color .3s;}
 .card-title{font-family:var(--display);font-size:17px;color:var(--text);font-weight:600;letter-spacing:-.01em;}
 .card-desc{font-size:12.5px;color:var(--text-b);line-height:1.7;}
 .card-arr{width:27px;height:27px;border-radius:50%;margin-top:auto;border:1px solid var(--border);font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .3s;}
-
-.stat{background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r3);padding:18px;text-align:center;position:relative;overflow:hidden;transition:border-color .3s;contain:layout paint;}
+.stat{background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r3);padding:18px;text-align:center;position:relative;overflow:hidden;transition:border-color .3s;}
 .stat:hover{border-color:var(--text-f);}
 .stat::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--goldd),transparent);opacity:.5;}
 .stat-n{font-family:var(--display);font-size:26px;color:var(--gold);margin-bottom:4px;font-weight:700;letter-spacing:-.02em;}
 .stat-l{font-family:var(--mono);font-size:9.5px;color:var(--text-m);letter-spacing:.16em;text-transform:uppercase;}
-
-/* ═══ CHAT ═══ */
 .chat-area{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:14px;z-index:1;}
-.msg{display:flex;gap:10px;animation:mIn .35s var(--ease);contain:layout;}
-@keyframes mIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.msg{display:flex;gap:10px;animation:mIn .4s var(--ease);}
+@keyframes mIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
 .msg.user{flex-direction:row-reverse;}
 .m-av{width:30px;height:30px;border-radius:var(--r1);flex-shrink:0;background:var(--bg-sec);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--text-m);}
-.m-bub{max-width:66%;padding:13px 16px;font-size:14px;font-weight:400;line-height:1.7;border-radius:var(--r3);word-break:break-word;}
-.msg.ai   .m-bub{background:var(--bg-sec);border:1px solid var(--border);color:var(--text-b);border-bottom-left-radius:3px;}
+.m-bub{max-width:66%;padding:13px 16px;font-size:14px;font-weight:400;line-height:1.7;border-radius:var(--r3);}
+.msg.ai .m-bub{background:var(--bg-sec);border:1px solid var(--border);color:var(--text-b);border-bottom-left-radius:3px;}
 .msg.user .m-bub{background:var(--text);color:var(--bg);border-bottom-right-radius:3px;}
 [data-theme="light"] .msg.user .m-bub{background:var(--text);color:var(--bg-alt);}
 .m-bub img.u-img{max-width:220px;max-height:180px;border-radius:var(--r2);display:block;margin-bottom:6px;object-fit:cover;border:1px solid var(--border);}
@@ -409,17 +229,10 @@ svg.lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:middle;flex-shr
 .t-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--text-f);animation:tB 1.4s infinite ease-in-out;}
 .t-dot:nth-child(1){animation-delay:-.32s;}.t-dot:nth-child(2){animation-delay:-.16s;}
 @keyframes tB{0%,80%,100%{transform:scale(0);}40%{transform:scale(1);}}
-
-/* ═══ INPUT BAR ═══ */
 .ibar{padding:10px 24px 16px;border-top:1px solid var(--border);background:var(--bg-alt);z-index:2;}
-
+.ibar::before{content:'';display:block;height:1px;margin-bottom:10px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
 .chip-row{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:8px;}
-.chip{
-  display:flex;align-items:center;gap:6px;padding:5px 9px 5px 8px;
-  background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r2);
-  font-size:11.5px;color:var(--text-b);max-width:200px;
-  position:relative;overflow:hidden;animation:chipIn .2s var(--ease);
-}
+.chip{display:flex;align-items:center;gap:6px;padding:5px 9px 5px 8px;background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r2);font-size:11.5px;color:var(--text-b);max-width:200px;position:relative;overflow:hidden;animation:chipIn .25s var(--ease);}
 .chip::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);}
 @keyframes chipIn{from{opacity:0;transform:scale(.9);}to{opacity:1;transform:none;}}
 .chip-ico{font-size:13px;color:var(--gold);flex-shrink:0;}
@@ -427,14 +240,12 @@ svg.lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:middle;flex-shr
 .chip-s{font-family:var(--mono);font-size:9px;color:var(--text-m);flex-shrink:0;}
 .chip-x{width:15px;height:15px;border-radius:50%;background:var(--bg-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:9px;color:var(--text-m);flex-shrink:0;transition:all .2s;}
 .chip-x:hover{background:var(--red);border-color:var(--red);color:#fff;}
-
 .irow{display:flex;gap:8px;align-items:flex-end;}
 .iwrap{flex:1;background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r3);display:flex;align-items:center;padding:5px 5px 5px 15px;transition:border-color .3s;}
 .iwrap:focus-within{border-color:var(--gold);box-shadow:0 0 0 2px var(--golds);}
 .cta{flex:1;background:transparent;border:none;color:var(--text);font-family:var(--sans);font-size:14px;font-weight:400;padding:8px 0;outline:none;resize:none;max-height:110px;line-height:1.6;}
 .cta::placeholder{color:var(--text-f);}
-
-.ib{width:40px;height:40px;border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;transition:all .22s;flex-shrink:0;border:none;}
+.ib{width:40px;height:40px;border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;transition:all .28s;flex-shrink:0;border:none;}
 .ib-ghost{background:var(--bg-sec);border:1px solid var(--border)!important;color:var(--text-m);}
 .ib-ghost:hover{border-color:var(--gold)!important;color:var(--gold);}
 .ib-send{background:var(--text);color:var(--bg);}
@@ -443,12 +254,9 @@ svg.lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:middle;flex-shr
 .ib-send:active{transform:scale(.97);}
 .ib-voice.on{background:rgba(232,84,84,.08);border-color:rgba(232,84,84,.4)!important;color:var(--red);animation:vPulse 2s infinite;}
 @keyframes vPulse{0%,100%{box-shadow:0 0 0 0 rgba(232,84,84,.15);}50%{box-shadow:0 0 0 10px rgba(232,84,84,0);}}
-
-label.ib-ghost{cursor:pointer;display:flex;align-items:center;justify-content:center;background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r2);width:40px;height:40px;font-size:17px;color:var(--text-m);transition:all .22s;flex-shrink:0;}
+label.ib-ghost{cursor:pointer;display:flex;align-items:center;justify-content:center;background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r2);width:40px;height:40px;font-size:17px;color:var(--text-m);transition:all .28s;flex-shrink:0;}
 label.ib-ghost:hover{border-color:var(--gold);color:var(--gold);}
 label.ib-ghost input[type=file]{display:none;}
-
-/* ═══ MESSENGER ═══ */
 #p-msg{flex-direction:row!important;}
 .cp{width:268px;flex-shrink:0;background:var(--bg-alt);border-right:1px solid var(--border);display:flex;flex-direction:column;}
 .cp-head{padding:18px 16px 14px;border-bottom:1px solid var(--border);}
@@ -457,50 +265,28 @@ label.ib-ghost input[type=file]{display:none;}
 .cp-search:focus{border-color:var(--gold);box-shadow:0 0 0 2px var(--golds);}
 .cp-search::placeholder{color:var(--text-f);}
 .cp-list{flex:1;overflow-y:auto;}
-.ci{padding:13px 16px;cursor:pointer;display:flex;align-items:center;gap:11px;border-bottom:1px solid var(--bsoft);transition:all .22s;position:relative;}
+.ci{padding:13px 16px;cursor:pointer;display:flex;align-items:center;gap:11px;border-bottom:1px solid var(--bsoft);transition:all .28s;position:relative;}
 .ci:hover{background:var(--bg-sec);}
 .ci.active{background:var(--bg-sec);}
 .ci.active::before{content:'';position:absolute;left:0;top:22%;bottom:22%;width:2px;background:var(--gold);}
 .ci-av{width:38px;height:38px;border-radius:var(--r2);flex-shrink:0;background:var(--bg-sec);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--text-m);}
 .ci-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;letter-spacing:-.01em;}
 .ci-prev{font-size:12px;color:var(--text-b);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.ci-time{font-family:var(--mono);font-size:9.5px;color:var(--text-f);margin-bottom:4px;text-align:right;}
-.ci-un{background:var(--red);color:#fff;border-radius:99px;padding:1px 6px;font-size:9px;font-weight:700;display:inline-block;float:right;}
-
+.ci-time{font-family:var(--mono);font-size:9.5px;color:var(--text-f);margin-bottom:4px;}
+.ci-un{background:var(--red);color:#fff;border-radius:99px;padding:1px 6px;font-size:9px;font-weight:700;display:inline-block;}
 .cc{flex:1;display:flex;flex-direction:column;min-width:0;}
 .cc-head{padding:15px 26px;border-bottom:1px solid var(--border);background:var(--bg-alt);display:flex;align-items:center;gap:13px;z-index:2;position:relative;}
-.cc-head::after{content:'';position:absolute;bottom:0;left:24px;right:24px;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
 .cc-av{width:38px;height:38px;border-radius:var(--r2);background:var(--bg-sec);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text-m);}
-
-/* ═══ MODALS ═══ */
 .overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.65);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:center;transition:opacity .4s var(--ease);}
 .overlay.hidden{opacity:0;pointer-events:none;}
-.overlay.hidden .modal{transform:translateY(24px) scale(.95);opacity:0;}
-.modal{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);padding:42px 36px;width:380px;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,.35);position:relative;overflow:hidden;transition:all .45s var(--ease);}
+.overlay.hidden .modal{transform:translateY(32px) scale(.93);opacity:0;}
+.modal{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);padding:42px 36px;width:380px;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,.35);position:relative;overflow:hidden;transition:all .5s var(--ease);}
 .modal::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4;}
 .m-ico{font-size:38px;color:var(--gold);margin-bottom:13px;display:flex;align-items:center;justify-content:center;}
 .m-title{font-family:var(--display);font-size:20px;margin-bottom:7px;color:var(--text);font-weight:600;letter-spacing:-.02em;}
 .m-sub{font-size:13px;color:var(--text-b);margin-bottom:24px;line-height:1.7;}
-.pin-dots{display:flex;justify-content:center;gap:14px;margin:22px 0;}
-.pdot{width:13px;height:13px;border-radius:50%;border:1.5px solid var(--border);transition:all .4s var(--spring);}
-.pdot.on{background:var(--gold);border-color:var(--gold);transform:scale(1.3);box-shadow:0 0 14px var(--goldg);}
-.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:20px 0;}
-.nk{padding:16px;border:1px solid var(--border);border-radius:var(--r2);background:var(--bg-sec);color:var(--text);font-family:var(--display);font-size:17px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
-.nk:hover{border-color:var(--gold);color:var(--gold);background:var(--bg-alt);transform:translateY(-1px);}
-.nk:active{transform:scale(.97);}
 .m-cancel{width:100%;padding:12px;border:1px solid var(--border);border-radius:var(--r2);background:transparent;color:var(--text-m);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .28s;}
 .m-cancel:hover{border-color:var(--text-m);color:var(--text);}
-
-/* Face modal */
-.fmodal{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);padding:36px;width:410px;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,.35);position:relative;overflow:hidden;transition:all .45s var(--ease);}
-.fmodal::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4;}
-.cam-wrap{width:220px;height:220px;border-radius:50%;margin:0 auto 22px;position:relative;overflow:hidden;border:1px solid var(--border);background:var(--bg-sec);}
-.cam-wrap::before{content:'';position:absolute;inset:0;border-radius:50%;border:1.5px solid transparent;border-top-color:var(--gold);animation:cSpin 2.4s linear infinite;z-index:4;}
-.cam-wrap::after{content:'';position:absolute;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:cScan 2.4s ease-in-out infinite;z-index:3;opacity:.5;}
-@keyframes cScan{0%,100%{top:15%;}50%{top:85%;}}
-.cam-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;z-index:2;}
-
-/* Image gen */
 .igmodal{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);padding:32px;width:520px;box-shadow:0 32px 80px rgba(0,0,0,.35);position:relative;overflow:hidden;}
 .igmodal::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4;}
 .ig-canvas{width:100%;height:300px;background:var(--bg-sec);border:1px solid var(--border);border-radius:var(--r3);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:14px;}
@@ -515,8 +301,6 @@ label.ib-ghost input[type=file]{display:none;}
 .gbtn:hover{opacity:.85;transform:translateY(-1px);}
 .gbtn.sec{background:var(--bg-sec);border:1px solid var(--border);color:var(--text-m);}
 .gbtn.sec:hover{border-color:var(--text-m);color:var(--text);}
-
-/* BIN */
 #page-bin{background:var(--bg);}
 .bin-shell{width:100vw;height:100vh;display:flex;flex-direction:column;padding:14px;gap:12px;}
 .bin-head{height:64px;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);display:flex;align-items:center;padding:0 26px;gap:13px;}
@@ -525,87 +309,160 @@ label.ib-ghost input[type=file]{display:none;}
 .empty-ico{font-size:48px;color:var(--text-f);margin-bottom:14px;opacity:.3;display:flex;align-items:center;justify-content:center;}
 .empty-title{font-family:var(--display);font-size:15px;font-weight:500;color:var(--text-m);margin-bottom:7px;letter-spacing:-.01em;}
 .empty-sub{font-size:13px;color:var(--text-f);}
-
-/* Security log */
-.sec-log-item{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--border);border-radius:var(--r2);margin-bottom:8px;background:var(--bg-sec);}
-.sec-log-img{width:48px;height:48px;border-radius:var(--r1);object-fit:cover;border:1px solid var(--border);background:var(--bg);}
-.sec-log-info{flex:1;}
-.sec-log-title{font-size:12.5px;font-weight:600;color:var(--red);margin-bottom:2px;}
-.sec-log-meta{font-family:var(--mono);font-size:9.5px;color:var(--text-m);}
-
 .hidden{display:none!important;}
 input,textarea,button{font-family:inherit;}
-@media(max-width:768px){
-  .shell{grid-template-columns:1fr;padding:8px;}
-  .sb{display:none;}
-  .grid-2,.grid-3{grid-template-columns:1fr;}
-  .reg-grid{grid-template-columns:1fr;}
-  .face-box,.intruder-modal{width:92vw;}
-}
+@media(max-width:768px){.shell{grid-template-columns:1fr;padding:8px;}.sb{display:none;}.grid-2,.grid-3{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<!-- ── THEME TOGGLE ── -->
 <button id="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
 <div id="notif-stack"></div>
 
-<!-- ═══════════════════════════════════════
-     REGISTRATION PAGE
-     ═══════════════════════════════════════ -->
+<!-- ── PIN MODAL ── -->
+<div class="overlay hidden" id="pin-modal" onclick="closePinModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="m-ico" id="pm-ico"></div>
+    <div class="m-title">Secure Vault</div>
+    <div class="m-sub">Enter your 4-digit PIN to decrypt your messages</div>
+    <div class="pin-dots"><div class="pdot" id="pd0"></div><div class="pdot" id="pd1"></div><div class="pdot" id="pd2"></div><div class="pdot" id="pd3"></div></div>
+    <div class="numpad">
+      <button class="nk" onclick="pinP('1')">1</button><button class="nk" onclick="pinP('2')">2</button><button class="nk" onclick="pinP('3')">3</button>
+      <button class="nk" onclick="pinP('4')">4</button><button class="nk" onclick="pinP('5')">5</button><button class="nk" onclick="pinP('6')">6</button>
+      <button class="nk" onclick="pinP('7')">7</button><button class="nk" onclick="pinP('8')">8</button><button class="nk" onclick="pinP('9')">9</button>
+      <button class="nk" onclick="pinP('0')" style="grid-column:2">0</button>
+      <button class="nk" id="nk-del" onclick="pinDel()"></button>
+    </div>
+    <button class="m-cancel" onclick="closePinModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- ── IMAGE GEN MODAL ── -->
+<div class="overlay hidden" id="imgen-modal" onclick="closeImgen()">
+  <div class="igmodal" onclick="event.stopPropagation()">
+    <div style="font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.02em;margin-bottom:5px;color:var(--text);">AI Image Studio</div>
+    <div style="font-size:13px;color:var(--text-b);margin-bottom:20px;">Describe anything — the model renders it instantly.</div>
+    <div class="ig-canvas" id="ig-preview"><div class="ig-empty">Awaiting creative direction…</div></div>
+    <input id="ig-prompt" class="ig-inp" type="text" placeholder="A futuristic trading floor with holographic displays…" onkeydown="if(event.key==='Enter')generateImage()"/>
+    <div class="btn-row">
+      <button onclick="generateImage()" class="gbtn" id="gen-btn"></button>
+      <button onclick="closeImgen()" class="gbtn sec">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── FACE VERIFY OVERLAY ── -->
+<div id="fv-overlay" class="hidden">
+  <div class="fv-card">
+    <div class="fv-title">Face Verification</div>
+    <div class="fv-sub">Confirming your identity…</div>
+    <div class="fv-ring"><video id="fv-video" autoplay muted playsinline></video></div>
+    <div class="fv-status" id="fv-status">Starting camera…</div>
+    <button class="m-cancel" onclick="cancelFaceVerify()" style="margin-top:4px;">Cancel Login</button>
+  </div>
+</div>
+
+<!-- ══════ REGISTRATION ══════ -->
 <div class="page out" id="page-register">
   <div class="sk-rings">
     <div class="sk-ring"><div class="sk-dot"></div></div>
     <div class="sk-ring"><div class="sk-dot" style="background:var(--accent);box-shadow:0 0 10px var(--acg);top:auto;bottom:-4px;"></div></div>
     <div class="sk-ring"></div>
   </div>
-
-  <div class="reg-card" id="reg-card-step1">
-    <div class="lc-brand" style="margin-bottom:28px;">
+  <div class="reg-card">
+    <div class="lc-brand" style="margin-bottom:24px;">
       <div class="lc-mark">N</div>
-      <div><div class="lc-name">NEXUS</div><div class="lc-sub">Enrollment</div></div>
+      <div><div class="lc-name">NEXUS</div><div class="lc-sub">New Account Setup</div></div>
     </div>
-    <div class="reg-steps"><div class="rstep on"></div><div class="rstep"></div><div class="rstep"></div></div>
-
-    <div class="reg-grid">
-      <div class="reg-f full"><div class="reg-l">Full Name</div><input class="reg-inp" id="reg-name" placeholder="John Doe" maxlength="24"/></div>
-      <div class="reg-f"><div class="reg-l">Safe Key (6 digits)</div><input class="reg-inp" id="reg-key" type="password" inputmode="numeric" maxlength="6" placeholder="······"/></div>
-      <div class="reg-f"><div class="reg-l">Confirm Key</div><input class="reg-inp" id="reg-key2" type="password" inputmode="numeric" maxlength="6" placeholder="······"/></div>
-      <div class="reg-f"><div class="reg-l">Messenger PIN (4 digits)</div><input class="reg-inp" id="reg-pin" inputmode="numeric" maxlength="4" placeholder="····"/></div>
-      <div class="reg-f"><div class="reg-l">Confirm PIN</div><input class="reg-inp" id="reg-pin2" inputmode="numeric" maxlength="4" placeholder="····"/></div>
-      <div class="reg-f full"><div class="reg-l">Alert Webhook (optional)</div><input class="reg-inp" id="reg-webhook" placeholder="https://discord.com/api/webhooks/..."/></div>
+    <div class="reg-progress" id="reg-prog">
+      <div class="rp-step active" id="rp0"></div>
+      <div class="rp-step" id="rp1"></div>
+      <div class="rp-step" id="rp2"></div>
+      <div class="rp-step" id="rp3"></div>
+      <div class="rp-step" id="rp4"></div>
     </div>
-    <button class="reg-cta" style="margin-top:18px;" onclick="regNext()"><span>Continue</span><i data-lucide="arrow-right"></i></button>
-    <div class="reg-link" onclick="goExistingUser()">Existing User? Sign In</div>
-  </div>
 
-  <div class="reg-card hidden" id="reg-card-step2" style="width:440px;">
-    <div class="lc-brand" style="margin-bottom:22px;">
-      <div class="lc-mark">N</div>
-      <div><div class="lc-name">NEXUS</div><div class="lc-sub">Biometric Enrollment</div></div>
+    <!-- Step 1: Profile -->
+    <div class="rs active" id="rs-0">
+      <div class="rs-title">Create your <em>profile</em></div>
+      <div class="rs-sub">Your identity inside the terminal. This is how you'll appear to others.</div>
+      <div class="r-label">Full Name</div>
+      <input class="r-input" id="r-name" type="text" placeholder="Your full name" maxlength="40" onkeydown="if(event.key==='Enter')regNext()"/>
+      <div class="r-label">Username</div>
+      <input class="r-input" id="r-user" type="text" placeholder="@handle" maxlength="20" onkeydown="if(event.key==='Enter')regNext()"/>
+      <div class="r-error" id="re-0"></div>
+      <button class="r-btn" onclick="regNext()"><span id="rb-0-ico"></span> Continue</button>
     </div>
-    <div class="reg-steps"><div class="rstep on"></div><div class="rstep on"></div><div class="rstep"></div></div>
-    <div style="font-family:var(--display);font-size:18px;color:var(--text);margin:18px 0 6px;">Face Registration</div>
-    <div style="font-size:12.5px;color:var(--text-b);margin-bottom:14px;">Center your face. Ensure good lighting. This binds your biometric signature to this account.</div>
 
-    <div class="cam-ring" id="reg-cam-ring">
-      <div class="cam-placeholder" id="reg-cam-placeholder"><i data-lucide="scan-face"></i></div>
-      <video id="reg-video" autoplay muted playsinline style="display:none;"></video>
+    <!-- Step 2: Safe Key -->
+    <div class="rs" id="rs-1">
+      <div class="rs-title">Set your <em>safe key</em></div>
+      <div class="rs-sub">A 6-digit key to unlock the terminal. Keep this secret — it's your primary credential.</div>
+      <div class="r-label">6-Digit Key</div>
+      <input class="r-input code" id="r-key" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·" oninput="if(this.value.length===6)document.getElementById('r-key2').focus()"/>
+      <div class="r-label">Confirm Key</div>
+      <input class="r-input code" id="r-key2" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·" onkeydown="if(event.key==='Enter')regNext()"/>
+      <div class="r-error" id="re-1"></div>
+      <button class="r-btn" onclick="regNext()"><span id="rb-1-ico"></span> Continue</button>
     </div>
-    <div class="cam-hint" id="reg-cam-hint">Click Start Camera to begin</div>
-    <div class="face-strength" id="face-bars"><div class="fbar"></div><div class="fbar"></div><div class="fbar"></div><div class="fbar"></div></div>
 
-    <button class="reg-cta" id="reg-scan-btn" onclick="startRegScan()"><i data-lucide="scan-face"></i><span>Start Camera & Scan</span></button>
-    <button class="reg-cta hidden" id="reg-submit-btn" onclick="submitRegistration()"><i data-lucide="check"></i><span>Complete Enrollment</span></button>
-    <div class="skip-bio" id="skip-bio-btn" onclick="skipBiometric()">Skip Biometric (Less Secure)</div>
-    <button class="m-cancel" style="margin-top:10px;" onclick="regBack()">Back</button>
+    <!-- Step 3: PIN -->
+    <div class="rs" id="rs-2">
+      <div class="rs-title">Set your <em>PIN</em></div>
+      <div class="rs-sub">A 4-digit PIN to access the encrypted messenger. Different from your key.</div>
+      <div class="pin-dots" style="margin-bottom:4px;"><div class="pdot" id="rpd0"></div><div class="pdot" id="rpd1"></div><div class="pdot" id="rpd2"></div><div class="pdot" id="rpd3"></div></div>
+      <div class="numpad" style="margin-top:12px;">
+        <button class="nk" onclick="regPinP('1')">1</button><button class="nk" onclick="regPinP('2')">2</button><button class="nk" onclick="regPinP('3')">3</button>
+        <button class="nk" onclick="regPinP('4')">4</button><button class="nk" onclick="regPinP('5')">5</button><button class="nk" onclick="regPinP('6')">6</button>
+        <button class="nk" onclick="regPinP('7')">7</button><button class="nk" onclick="regPinP('8')">8</button><button class="nk" onclick="regPinP('9')">9</button>
+        <button class="nk" onclick="regPinP('0')" style="grid-column:2">0</button>
+        <button class="nk" id="reg-nk-del" onclick="regPinDel()"></button>
+      </div>
+      <div class="r-error" id="re-2"></div>
+    </div>
+
+    <!-- Step 4: Face Enrollment -->
+    <div class="rs" id="rs-3">
+      <div class="rs-title">Enroll <em>Face ID</em></div>
+      <div class="rs-sub">Your face secures the terminal. Anyone else attempting to log in will trigger an alert.</div>
+      <div class="face-enroll" id="fe-wrap">
+        <video id="fe-video" autoplay muted playsinline style="transform:scaleX(-1);"></video>
+        <canvas id="fe-canvas" style="display:none;"></canvas>
+      </div>
+      <div class="fe-status" id="fe-status">Click Start Camera to begin</div>
+      <div class="r-error" id="re-3"></div>
+      <button class="r-btn" id="fe-btn" onclick="feAction()"><span id="rb-3-ico"></span> <span id="fe-btn-lbl">Start Camera</span></button>
+      <button class="r-btn sec" onclick="skipFace()" style="margin-top:8px;">Skip for now</button>
+    </div>
+
+    <!-- Step 5: Notifications -->
+    <div class="rs" id="rs-4">
+      <div class="rs-title">Security <em>alerts</em></div>
+      <div class="rs-sub">Get notified on your phone if someone tries to break in.</div>
+      <div class="ntfy-box">
+        Install the free <b>ntfy</b> app on your phone, then subscribe to your personal topic below.<br/>
+        Topic: <code id="ntfy-topic-display"></code><br/>
+        App: <code>ntfy.sh</code> · Available on iOS &amp; Android
+      </div>
+      <div class="r-label">Your ntfy Topic (auto-generated)</div>
+      <input class="r-input" id="r-ntfy" type="text" placeholder="nexus-xxxxxxxx" readonly style="cursor:pointer;font-family:var(--mono);letter-spacing:.08em;" onclick="this.select()"/>
+      <div class="r-error" id="re-4"></div>
+      <button class="r-btn" onclick="regNext()"><span id="rb-4-ico"></span> Finish Setup</button>
+      <button class="r-btn sec" onclick="regNext()" style="margin-top:8px;">Skip alerts</button>
+    </div>
+
+    <!-- Step 6: Done -->
+    <div class="rs" id="rs-5">
+      <div class="done-circle" id="done-ico"></div>
+      <div class="rs-title" style="text-align:center;">Welcome to <em>NEXUS</em></div>
+      <div class="rs-sub" style="text-align:center;">Your terminal is secured and ready. Your unique credentials have been saved to this device.</div>
+      <button class="r-btn" onclick="regComplete()" style="margin-top:16px;"><span id="rb-5-ico"></span> Enter Terminal</button>
+    </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     LOCK / LOGIN PAGE
-     ═══════════════════════════════════════ -->
-<div class="page out" id="page-safekey" style="z-index:12;">
+<!-- ══════ LOCK SCREEN ══════ -->
+<div class="page" id="page-safekey">
   <div class="sk-rings">
     <div class="sk-ring"><div class="sk-dot"></div></div>
     <div class="sk-ring"><div class="sk-dot" style="background:var(--accent);box-shadow:0 0 10px var(--acg);top:auto;bottom:-4px;"></div></div>
@@ -617,103 +474,23 @@ input,textarea,button{font-family:inherit;}
       <div><div class="lc-name">NEXUS</div><div class="lc-sub">Private Terminal</div></div>
     </div>
     <div class="lc-headline">Enter <em>Safe Key</em></div>
-    <div class="lc-desc" id="login-desc">Authentication required. Enter your 6-digit key to proceed.</div>
+    <div class="lc-desc" id="lc-welcome-name">Authentication required. Enter your 6-digit key to proceed.</div>
     <div class="lc-flabel">6-Digit Key <div class="lc-rule"></div></div>
     <input class="lc-input" id="sk-input" type="password" inputmode="numeric" maxlength="6" placeholder="· · · · · ·" oninput="skInput()" onkeydown="skKeydown(event)"/>
-    <div class="lc-hint" id="lc-hint-key"><i data-lucide="key-round"></i> Default key: <b>123456</b>&nbsp;·&nbsp;Messenger PIN: <b>1234</b></div>
-    <button class="lc-cta" onclick="verifyKey()" id="unlock-btn"><i data-lucide="lock-open"></i> Unlock Terminal</button>
+    <div style="height:16px;"></div>
+    <button class="lc-cta" onclick="verifyKey()" id="unlock-btn"></button>
     <div class="lc-error" id="sk-error"></div>
     <div class="lc-links">
-      <span class="lc-link" onclick="forgotFlow()">Forgot Key</span>
-      <span class="lc-link" onclick="resetAccount()">Reset Account</span>
-      <span class="lc-link" onclick="openFace('unlock')">Face ID</span>
+      <span class="lc-link" onclick="goRegister()">New Account</span>
+      <span class="lc-link" onclick="resetAccount()">Reset</span>
     </div>
   </div>
   <div class="loc-pill" id="loc-badge" style="display:none;"><div class="loc-dot"></div><span id="loc-text"></span></div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     FACE VERIFICATION (Login Step 2)
-     ═══════════════════════════════════════ -->
-<div class="face-overlay hidden" id="face-verify-overlay">
-  <div class="face-box">
-    <div style="font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.02em;margin-bottom:5px;color:var(--text);">Biometric Verification</div>
-    <div style="font-size:13px;color:var(--text-b);margin-bottom:18px;">Confirming your identity…</div>
-    <div class="face-cam" id="verify-cam-container">
-      <div class="cam-placeholder" id="verify-placeholder" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:48px;color:var(--text-f);"><i data-lucide="scan-face"></i></div>
-      <video id="fv-verify" autoplay muted playsinline style="display:none;"></video>
-    </div>
-    <div class="face-status" id="fv-status">Initializing camera…</div>
-    <button class="m-cancel" onclick="cancelFaceVerify()">Cancel</button>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     INTRUDER ALERT MODAL
-     ═══════════════════════════════════════ -->
-<div class="overlay hidden" id="intruder-overlay" onclick="event.stopPropagation()">
-  <div class="intruder-modal">
-    <div class="m-ico" style="color:var(--red);"><i data-lucide="shield-alert"></i></div>
-    <div class="intruder-title">Intruder Detected</div>
-    <div class="intruder-meta" id="intruder-meta">Unauthorized biometric mismatch</div>
-    <img class="intruder-img" id="intruder-img" src="" alt="Intruder"/>
-    <div style="font-size:12.5px;color:var(--text-b);line-height:1.7;margin-bottom:18px;">
-      An unauthorized individual attempted access using your credentials. Their image, timestamp, and location have been logged. A mobile alert has been dispatched.
-    </div>
-    <button class="reg-cta" style="background:var(--red);color:#fff;" onclick="closeIntruder()">Acknowledge & Lock</button>
-  </div>
-</div>
-
-<!-- ── PIN MODAL ── -->
-<div class="overlay hidden" id="pin-modal" onclick="closePinModal()">
-  <div class="modal" onclick="event.stopPropagation()">
-    <div class="m-ico"><i data-lucide="lock-keyhole"></i></div>
-    <div class="m-title">Secure Vault</div>
-    <div class="m-sub">Enter your 4-digit PIN to decrypt your messages</div>
-    <div class="pin-dots"><div class="pdot" id="pd0"></div><div class="pdot" id="pd1"></div><div class="pdot" id="pd2"></div><div class="pdot" id="pd3"></div></div>
-    <div class="numpad">
-      <button class="nk" onclick="pinP('1')">1</button><button class="nk" onclick="pinP('2')">2</button><button class="nk" onclick="pinP('3')">3</button>
-      <button class="nk" onclick="pinP('4')">4</button><button class="nk" onclick="pinP('5')">5</button><button class="nk" onclick="pinP('6')">6</button>
-      <button class="nk" onclick="pinP('7')">7</button><button class="nk" onclick="pinP('8')">8</button><button class="nk" onclick="pinP('9')">9</button>
-      <button class="nk" onclick="pinP('0')" style="grid-column:2">0</button>
-      <button class="nk" onclick="pinDel()"><i data-lucide="delete"></i></button>
-    </div>
-    <button class="m-cancel" onclick="closePinModal()">Cancel</button>
-  </div>
-</div>
-
-<!-- ── FACE MODAL (Settings/Recover) ── -->
-<div class="overlay hidden" id="face-modal" onclick="closeFace()">
-  <div class="fmodal" onclick="event.stopPropagation()">
-    <button onclick="closeFace()" style="position:absolute;top:14px;right:14px;width:30px;height:30px;background:var(--bg-sec);border:1px solid var(--border);border-radius:50%;color:var(--text-m);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .28s;"><i data-lucide="x"></i></button>
-    <div style="font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.02em;margin-bottom:5px;color:var(--text);">Biometric Scan</div>
-    <div style="font-size:13px;color:var(--text-b);margin-bottom:22px;">Face ID authentication protocol</div>
-    <div class="cam-wrap"><video id="fv" autoplay muted playsinline></video></div>
-    <div id="face-status" style="font-family:var(--mono);font-size:9.5px;color:var(--text-m);letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px;">Initializing…</div>
-    <button onclick="fmStart()" class="lc-cta" style="margin-bottom:9px;"><i data-lucide="camera"></i> Start Camera</button>
-    <button onclick="closeFace()" class="m-cancel">Cancel</button>
-  </div>
-</div>
-
-<!-- ── IMAGE GEN MODAL ── -->
-<div class="overlay hidden" id="imgen-modal" onclick="closeImgen()">
-  <div class="igmodal" onclick="event.stopPropagation()">
-    <div style="font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.02em;margin-bottom:5px;color:var(--text);">AI Image Studio</div>
-    <div style="font-size:13px;color:var(--text-b);margin-bottom:20px;">Describe anything — the model renders it.</div>
-    <div class="ig-canvas" id="ig-preview"><div class="ig-empty">Awaiting creative direction…</div></div>
-    <input id="ig-prompt" class="ig-inp" type="text" placeholder="A futuristic trading floor with holographic displays…"/>
-    <div class="btn-row">
-      <button onclick="generateImage()" class="gbtn"><i data-lucide="sparkles"></i> Generate</button>
-      <button onclick="closeImgen()" class="gbtn sec">Close</button>
-    </div>
-  </div>
-</div>
-
 <!-- ══════ MAIN APP ══════ -->
 <div class="page out" id="page-main">
   <div class="shell">
-
-    <!-- SIDEBAR -->
     <div class="sb">
       <div class="sb-top">
         <div class="sb-mark">N</div>
@@ -721,12 +498,11 @@ input,textarea,button{font-family:inherit;}
       </div>
       <div class="sb-body">
         <div class="sb-grp">Navigation</div>
-        <div class="sb-item active" id="sb-home" onclick="switchPanel('home')"><i data-lucide="house"></i> Home</div>
-        <div class="sb-item" id="sb-ai" onclick="switchPanel('ai')"><i data-lucide="bot"></i> AI Assistant</div>
-        <div class="sb-item" id="sb-msg" onclick="openMessenger()"><i data-lucide="message-circle"></i> Messenger <span class="sb-badge hidden" id="msg-badge">0</span></div>
+        <div class="sb-item active" id="sb-home" onclick="switchPanel('home')"></div>
+        <div class="sb-item" id="sb-ai" onclick="switchPanel('ai')"></div>
+        <div class="sb-item" id="sb-msg" onclick="openMessenger()"><span class="sb-badge hidden" id="msg-badge">0</span></div>
         <div class="sb-grp">System</div>
-        <div class="sb-item" onclick="goPage('bin')"><i data-lucide="trash-2"></i> Recycle Bin</div>
-        <div class="sb-item" onclick="showSecurityLog()"><i data-lucide="shield-alert"></i> Security Log</div>
+        <div class="sb-item" id="sb-bin" onclick="goPage('bin')"></div>
       </div>
       <div class="sb-foot">
         <div class="sb-user">
@@ -735,19 +511,16 @@ input,textarea,button{font-family:inherit;}
             <div class="sb-uname" id="sb-pname">User</div>
             <div class="sb-uid" id="sb-pid">#····</div>
           </div>
-          <button class="lock-ico" onclick="lockApp()" id="lock-btn"><i data-lucide="lock-keyhole"></i></button>
+          <button class="lock-ico" onclick="lockApp()" id="lock-btn"></button>
         </div>
       </div>
     </div>
-
-    <!-- CONTENT -->
     <div class="content">
 
       <!-- HOME PANEL -->
       <div class="panel" id="p-home">
         <div class="topbar">
           <div><div class="t-title" id="tb-greeting">Home</div></div>
-          <div class="t-btn" onclick="switchPanel('home')"><i data-lucide="arrow-left"></i> Back</div>
         </div>
         <div class="home-body">
           <div class="hello-row">
@@ -761,17 +534,17 @@ input,textarea,button{font-family:inherit;}
           <div class="grid-2">
             <div class="card" onclick="switchPanel('ai')">
               <div class="card-ey">Feature</div>
-              <div class="card-ico"><i data-lucide="bot"></i></div>
+              <div class="card-ico" id="card-ai-ico"></div>
               <div class="card-title">AI Assistant</div>
-              <div class="card-desc">Conversational intelligence with image synthesis, file analysis, and voice input. Streaming enabled.</div>
-              <div class="card-arr"><i data-lucide="arrow-right"></i></div>
+              <div class="card-desc">Powered by GPT-4o with real-time streaming. Ask anything, attach files, generate images.</div>
+              <div class="card-arr" id="card-ai-arr"></div>
             </div>
             <div class="card" onclick="openMessenger()">
               <div class="card-ey">Feature</div>
-              <div class="card-ico"><i data-lucide="message-circle"></i></div>
+              <div class="card-ico" id="card-msg-ico"></div>
               <div class="card-title">Messenger</div>
-              <div class="card-desc">Biometrically-secured communications. PIN and Face ID protected with file sharing.</div>
-              <div class="card-arr"><i data-lucide="arrow-right"></i></div>
+              <div class="card-desc">PIN-protected secure communications with file sharing and biometric authentication.</div>
+              <div class="card-arr" id="card-msg-arr"></div>
             </div>
           </div>
           <div class="grid-3">
@@ -787,39 +560,39 @@ input,textarea,button{font-family:inherit;}
         <div class="topbar">
           <div>
             <div class="t-title">AI Assistant</div>
-            <div class="t-tag">Pollinations · Streaming · No Key Required</div>
+            <div class="t-tag">GPT-4o · Streaming · No API Key Required</div>
           </div>
           <div style="display:flex;gap:7px;">
-            <div class="t-btn" onclick="openImgen()"><i data-lucide="sparkles"></i> Image</div>
-            <div class="t-btn" onclick="clearAI()"><i data-lucide="eraser"></i> Clear</div>
-            <div class="t-btn" onclick="switchPanel('home')"><i data-lucide="arrow-left"></i> Back</div>
+            <div class="t-btn" onclick="openImgen()" id="tb-img-btn"></div>
+            <div class="t-btn" onclick="clearAI()" id="tb-clear-btn"></div>
+            <div class="t-btn" onclick="switchPanel('home')" id="tb-back-ai"></div>
           </div>
         </div>
         <div class="chat-area" id="ai-body">
           <div class="msg ai">
-            <div class="m-av"><i data-lucide="bot"></i></div>
-            <div class="m-bub">Welcome to NEXUS AI. I am running on high-performance open models with token streaming. Ask anything, attach files, generate images, or dictate via voice.</div>
+            <div class="m-av" id="ai-av-init"></div>
+            <div class="m-bub">Welcome to NEXUS AI — powered by GPT-4o with streaming responses. Ask anything, attach files, or generate images. I'm ready.</div>
           </div>
         </div>
         <div class="ibar">
           <div class="chip-row" id="ai-chips"></div>
           <div class="irow">
-            <button class="ib ib-ghost ib-voice" id="vbtn" onclick="toggleVoice()"><i data-lucide="mic"></i></button>
-            <label class="ib-ghost" title="Attach file (images, PDF, TXT, CSV, JSON, MD)">
-              <i data-lucide="paperclip"></i>
+            <button class="ib ib-ghost ib-voice" id="vbtn" onclick="toggleVoice()"></button>
+            <label class="ib-ghost" title="Attach file">
+              <span id="attach-ai-ico"></span>
               <input type="file" id="ai-file" multiple accept="image/*,.pdf,.txt,.doc,.docx,.csv,.json,.md" onchange="handleUpload('ai',this)"/>
             </label>
             <div class="iwrap">
               <textarea class="cta" id="ai-ta" placeholder="Ask me anything…" rows="1" onkeydown="aiKey(event)"></textarea>
             </div>
-            <button class="ib ib-send" onclick="sendAI()" id="ai-send-btn"><i data-lucide="send"></i></button>
+            <button class="ib ib-send" onclick="sendAI()" id="ai-send-btn"></button>
           </div>
         </div>
       </div>
 
       <!-- MESSENGER PANEL -->
       <div class="panel hidden" id="p-msg" style="flex-direction:row;">
-        div class="cp">
+        <div class="cp">
           <div class="cp-head">
             <div class="cp-title">Messages</div>
             <input class="cp-search" type="text" placeholder="Search contacts…" oninput="filterC(this.value)">
@@ -828,71 +601,51 @@ input,textarea,button{font-family:inherit;}
         </div>
         <div class="cc">
           <div class="cc-head">
-            <div class="cc-av"><i data-lucide="user"></i></div>
+            <div class="cc-av" id="cz-av"></div>
             <div style="flex:1;min-width:0;">
-              <div id="cz-name" style="font-size:14px;font-weight:600;color:var(--text);letter-spacing:-.01em;">Select contact</div>
+              <div id="cz-name" style="font-size:14px;font-weight:600;color:var(--text);">Select contact</div>
               <div id="cz-status" style="font-family:var(--mono);font-size:9px;color:var(--text-m);letter-spacing:.12em;text-transform:uppercase;margin-top:3px;">—</div>
             </div>
-            <div class="t-btn" onclick="openFace('messenger')"><i data-lucide="scan-face"></i> Face ID</div>
-            <div class="t-btn" onclick="switchPanel('home')"><i data-lucide="arrow-left"></i> Back</div>
+            <div class="t-btn" onclick="switchPanel('home')" id="msg-back-btn"></div>
           </div>
           <div class="chat-area" id="msg-body" style="background:var(--bg);">
             <div class="empty-state">
-              <div class="empty-ico"><i data-lucide="message-circle"></i></div>
+              <div class="empty-ico" id="empty-msg-ico"></div>
               <div class="empty-title">Select a contact</div>
-              <div class="empty-sub">All conversations are PIN-protected and encrypted</div>
+              <div class="empty-sub">All conversations are PIN-protected</div>
             </div>
           </div>
           <div class="ibar">
             <div class="chip-row" id="msg-chips"></div>
             <div class="irow">
-              <button class="ib ib-ghost ib-voice" onclick="toggleVoice()" id="msg-voice-btn"><i data-lucide="mic"></i></button>
-              <label class="ib-ghost" title="Attach file">
-                <i data-lucide="paperclip"></i>
+              <button class="ib ib-ghost ib-voice" onclick="toggleVoice()" id="msg-voice-btn"></button>
+              <label class="ib-ghost">
+                <span id="attach-msg-ico"></span>
                 <input type="file" id="msg-file" multiple accept="image/*,.pdf,.txt,.doc,.docx,.csv,.json,.md" onchange="handleUpload('msg',this)"/>
               </label>
               <div class="iwrap">
                 <textarea class="cta" id="msg-ta" placeholder="Type a secure message…" rows="1" onkeydown="msgKey(event)"></textarea>
               </div>
-              <button class="ib ib-send" onclick="sendMsg()" id="msg-send-btn"><i data-lucide="send"></i></button>
+              <button class="ib ib-send" onclick="sendMsg()" id="msg-send-btn"></button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SECURITY LOG PANEL -->
-      <div class="panel hidden" id="p-sec">
-        <div class="topbar">
-          <div>
-            <div class="t-title">Security Log</div>
-            <div class="t-tag">Intrusion Attempts & Alerts</div>
-          </div>
-          <div class="t-btn" onclick="switchPanel('home')"><i data-lucide="arrow-left"></i> Back</div>
-        </div>
-        <div class="home-body" id="sec-body">
-          <div class="empty-state" id="sec-empty">
-            <div class="empty-ico"><i data-lucide="shield-check"></i></div>
-            <div class="empty-title">No security events</div>
-            <div class="empty-sub">Your account has not encountered any intrusion attempts</div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /content -->
-  </div><!-- /shell -->
-</div><!-- /page-main -->
+    </div>
+  </div>
+</div>
 
 <!-- ══════ BIN ══════ -->
 <div class="page out" id="page-bin">
   <div class="bin-shell">
     <div class="bin-head">
-      <button class="t-btn" onclick="goPage('main')"><i data-lucide="arrow-left"></i> Back</button>
-      <div style="font-family:var(--display);font-size:16px;font-weight:600;letter-spacing:-.01em;flex:1;padding-left:11px;">Recycle Bin</div>
-      <div style="font-family:var(--mono);font-size:9px;color:var(--text-m);letter-spacing:.16em;text-transform:uppercase;">Secure Deletion</div>
+      <button class="t-btn" onclick="goPage('main')" id="bin-back-btn"></button>
+      <div style="font-family:var(--display);font-size:16px;font-weight:600;flex:1;padding-left:11px;">Recycle Bin</div>
     </div>
     <div class="bin-body">
       <div class="empty-state">
-        <div class="empty-ico"><i data-lucide="trash-2"></i></div>
+        <div class="empty-ico" id="bin-ico"></div>
         <div class="empty-title">The bin is empty</div>
         <div class="empty-sub">No items have been deleted</div>
       </div>
@@ -902,34 +655,46 @@ input,textarea,button{font-family:inherit;}
 
 <script>
 // ═══════════════════════════════════════════
-//  NEXUS — Core Engine
+//  NEXUS v2 — Full Rewrite
 // ═══════════════════════════════════════════
 
 const IMAGE_API = 'https://image.pollinations.ai/prompt/';
-const TEXT_API  = 'https://text.pollinations.ai/';
+const AI_API    = 'https://text.pollinations.ai/';
+
+// Face-api lazy loader
+let faceApiLoaded = false;
+async function loadFaceApi() {
+  if (faceApiLoaded) return true;
+  return new Promise((resolve) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.12/dist/face-api.esm.js';
+    s.type = 'module';
+    s.onload = () => { faceApiLoaded = true; resolve(true); };
+    s.onerror = () => resolve(false);
+    document.head.appendChild(s);
+  });
+}
 
 // ── State
-let isDark = true, currentUser = '', activeContact = null;
-let faceStream = null, faceMode = '', faceModelsReady = false;
+let isDark = true, currentUser = null;
+let faceEnrollStream = null, faceVerifyStream = null;
+let faceModelsLoaded = false, enrolledDescriptor = null;
 let isListening = false, recognition = null;
 let aiHistory = [], msgUnlocked = false, pinBuf = '';
+let regPinBuf = '', regStep = 0, faceEnrollState = 'idle';
 let userLoc = null, msgCount = 0, sessionStart = Date.now();
 const uploads = { ai:[], msg:[] };
-let currentFaceDescriptor = null;
-let storedUser = null;
-let aiController = null;
-let sessionToken = 0;
-let regStream = null, verifyStream = null;
 
-// Performance: cache DOM refs
-const $ = id => document.getElementById(id);
-const $$ = sel => document.querySelectorAll(sel);
+// ── User Store
+const USER_KEY = 'nexus_v3_user';
+function getUser() { try { return JSON.parse(localStorage.getItem(USER_KEY)); } catch { return null; } }
+function saveUser(u) { localStorage.setItem(USER_KEY, JSON.stringify(u)); }
+function genTopic() { return 'nexus-' + Math.random().toString(36).slice(2,10); }
 
 // ── Icon helpers
-function icon(name, cls='') {
+function icon(name) {
   const el = document.createElement('i');
   el.setAttribute('data-lucide', name);
-  if (cls) el.className = cls;
   return el;
 }
 function setIcon(el, name) {
@@ -938,960 +703,852 @@ function setIcon(el, name) {
   el.appendChild(icon(name));
   lucide.createIcons({ nodes: [el] });
 }
-function renderIcon(id, name) { setIcon($(id), name); }
+function ri(id, name) { setIcon(document.getElementById(id), name); }
 
+function setBtnIcon(id, name, label) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = '';
+  el.appendChild(icon(name));
+  if (label) el.appendChild(document.createTextNode('\u00A0' + label));
+  lucide.createIcons({ nodes: [el] });
+}
+
+// ── Init Icons
 function initIcons() {
-  renderIcon('theme-btn', 'moon');
-  renderIcon('lock-btn', 'lock-keyhole');
-  lucide.createIcons({ nodes: [document.body] });
+  ri('theme-btn', 'moon');
+  ri('pm-ico', 'lock-keyhole');
+  ri('gen-btn', 'sparkles'); if(document.getElementById('gen-btn')) { document.getElementById('gen-btn').innerHTML=''; document.getElementById('gen-btn').appendChild(icon('sparkles')); document.getElementById('gen-btn').appendChild(document.createTextNode('\u00A0Generate')); lucide.createIcons({nodes:[document.getElementById('gen-btn')]}); }
+  setBtnIcon('unlock-btn', 'lock-open', 'Unlock Terminal');
+  setBtnIcon('tb-img-btn', 'sparkles', 'Image');
+  setBtnIcon('tb-clear-btn', 'eraser', 'Clear');
+  setBtnIcon('tb-back-ai', 'arrow-left', 'Back');
+  setBtnIcon('msg-back-btn', 'arrow-left', 'Back');
+  setBtnIcon('bin-back-btn', 'arrow-left', 'Back');
+  ri('lock-btn', 'lock-keyhole');
+  ri('vbtn', 'mic');
+  ri('ai-send-btn', 'send');
+  ri('attach-ai-ico', 'paperclip');
+  ri('msg-voice-btn', 'mic');
+  ri('msg-send-btn', 'send');
+  ri('attach-msg-ico', 'paperclip');
+  ri('card-ai-ico', 'bot');
+  ri('card-ai-arr', 'arrow-right');
+  ri('card-msg-ico', 'message-circle');
+  ri('card-msg-arr', 'arrow-right');
+  ri('empty-msg-ico', 'message-circle');
+  ri('bin-ico', 'trash-2');
+  ri('ai-av-init', 'bot');
+  ri('cz-av', 'user');
+  ri('nk-del', 'delete');
+  ri('reg-nk-del', 'delete');
+  ri('done-ico', 'shield-check');
+  // Sidebar
+  setSbItem('sb-home', 'house', 'Home');
+  setSbItem('sb-ai', 'bot', 'AI Assistant');
+  setSbItemMsg();
+  setSbItem('sb-bin', 'trash-2', 'Recycle Bin');
+  // Reg buttons
+  ['rb-0-ico','rb-1-ico','rb-3-ico','rb-4-ico','rb-5-ico'].forEach((id,i) => {
+    const icons = ['arrow-right','key-round','camera','bell','log-in'];
+    ri(id, icons[i]);
+  });
+}
+function setSbItem(id, ic, label) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const badge = el.querySelector('.sb-badge');
+  el.innerHTML = '';
+  el.appendChild(icon(ic));
+  el.appendChild(document.createTextNode('\u00A0' + label));
+  if (badge) el.appendChild(badge);
+  lucide.createIcons({ nodes: [el] });
+}
+function setSbItemMsg() {
+  const el = document.getElementById('sb-msg');
+  if (!el) return;
+  const badge = el.querySelector('.sb-badge');
+  el.innerHTML = '';
+  el.appendChild(icon('message-circle'));
+  el.appendChild(document.createTextNode('\u00A0Messenger'));
+  if (badge) el.appendChild(badge);
+  lucide.createIcons({ nodes: [el] });
 }
 
 // ── Theme
 function toggleTheme() {
   isDark = !isDark;
   document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-  setIcon($('theme-btn'), isDark ? 'moon' : 'sun');
+  ri('theme-btn', isDark ? 'moon' : 'sun');
 }
 
 // ── Notifications
 function notif(type, title, body) {
-  const iconMap = { success:'circle-check', danger:'circle-alert', warning:'zap', info:'info' };
-  const s = $('notif-stack');
+  const map = { success:'circle-check', danger:'circle-alert', warning:'zap', info:'info' };
+  const s = document.getElementById('notif-stack');
   const n = document.createElement('div');
   n.className = 'notif ' + type;
-  const ico = document.createElement('div'); ico.className = 'n-ico'; ico.appendChild(icon(iconMap[type]||'info'));
+  const ico = document.createElement('div'); ico.className = 'n-ico'; ico.appendChild(icon(map[type]||'info'));
   const txt = document.createElement('div');
   txt.innerHTML = `<div class="n-title">${title}</div><div class="n-body">${body}</div>`;
-  n.appendChild(ico); n.appendChild(txt);
-  s.appendChild(n);
+  n.appendChild(ico); n.appendChild(txt); s.appendChild(n);
   lucide.createIcons({ nodes: [n] });
-  requestAnimationFrame(() => {
-    setTimeout(() => { n.style.opacity='0'; n.style.transform='translateX(22px)'; setTimeout(() => n.remove(), 400); }, 4500);
-  });
+  setTimeout(() => { n.style.cssText += 'opacity:0;transform:translateX(22px);transition:all .4s'; setTimeout(() => n.remove(), 420); }, 4000);
 }
 
-// ── Location (fast, cached)
+// ── Location
 async function detectLocation() {
   try {
-    const r = await fetch('https://ipapi.co/json/', { cache:'force-cache' });
+    const r = await fetch('https://ip-api.com/json/?fields=status,country,city,timezone');
     const d = await r.json();
-    if (d.city) {
-      userLoc = { city:d.city, country:d.country_name, timezone:d.timezone, ip:d.ip };
-      $('loc-badge').style.display = 'flex';
-      $('loc-text').textContent = `${d.city}, ${d.country_name}`;
-      $('home-loc').textContent = d.city;
+    if (d.status === 'success') {
+      userLoc = d;
+      const b = document.getElementById('loc-badge');
+      b.style.display = 'flex';
+      document.getElementById('loc-text').textContent = `${d.city}, ${d.country}`;
+      document.getElementById('home-loc').textContent = d.city;
     }
-  } catch(e) { /* silent */ }
+  } catch(e) {}
 }
 
-// ═══════════════════════════════════════════
-//  FACE API — Biometric Engine
-// ═══════════════════════════════════════════
-const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.12/model';
+// ── REGISTRATION ──────────────────────────────
+let regData = {};
 
-async function loadFaceModels() {
-  if (faceModelsReady) return true;
-  try {
-    await Promise.all([
-      faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
-      faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
-      faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL)
-    ]);
-    faceModelsReady = true;
-    return true;
-  } catch(e) {
-    console.error('Face model load failed', e);
-    return false;
-  }
+function goRegister() {
+  regStep = 0;
+  regData = {};
+  const topic = genTopic();
+  regData.ntfyTopic = topic;
+  document.getElementById('r-ntfy').value = topic;
+  document.getElementById('ntfy-topic-display').textContent = topic;
+  showRegStep(0);
+  goPage('register');
 }
 
-// Get descriptor from video element
-async function getFaceDescriptor(videoEl) {
-  try {
-    const detection = await faceapi.detectSingleFace(videoEl, new faceapi.TinyFaceDetectorOptions({ inputSize:320, scoreThreshold:.5 }))
-      .withFaceLandmarks().withFaceDescriptor();
-    return detection ? detection.descriptor : null;
-  } catch(e) {
-    return null;
-  }
-}
-
-// Compare two descriptors (stored vs current)
-function compareFaces(d1, d2) {
-  if (!d1 || !d2) return 1;
-  return faceapi.euclideanDistance(d1, d2);
-}
-
-// ═══════════════════════════════════════════
-//  REGISTRATION FLOW
-// ═══════════════════════════════════════════
-function checkExistingAccount() {
-  const raw = localStorage.getItem('nexus_account');
-  if (raw) {
-    try { storedUser = JSON.parse(raw); } catch(e) { storedUser = null; }
-  }
-  if (!storedUser) {
-    goPage('register');
-  } else {
-    goPage('safekey');
-  }
+function showRegStep(n) {
+  document.querySelectorAll('.rs').forEach((el,i) => {
+    el.classList.toggle('active', i === n);
+  });
+  document.querySelectorAll('.rp-step').forEach((el,i) => {
+    el.classList.toggle('done', i < n);
+    el.classList.toggle('active', i === n);
+  });
+  regStep = n;
 }
 
 function regNext() {
-  const name = $('reg-name').value.trim();
-  const key = $('reg-key').value.trim();
-  const key2 = $('reg-key2').value.trim();
-  const pin = $('reg-pin').value.trim();
-  const pin2 = $('reg-pin2').value.trim();
-
-  if (!name || name.length < 2) { notif('warning','Invalid Name','Enter your full name'); return; }
-  if (!/^\d{6}$/.test(key)) { notif('warning','Invalid Key','Safe Key must be exactly 6 digits'); return; }
-  if (key !== key2) { notif('warning','Key Mismatch','Safe Keys do not match'); return; }
-  if (!/^\d{4}$/.test(pin)) { notif('warning','Invalid PIN','Messenger PIN must be exactly 4 digits'); return; }
-  if (pin !== pin2) { notif('warning','PIN Mismatch','PINs do not match'); return; }
-
-  $('reg-card-step1').classList.add('hidden');
-  $('reg-card-step2').classList.remove('hidden');
-  $('reg-cam-hint').textContent = 'Click "Start Camera & Scan" to begin';
+  if (regStep === 0) {
+    const name = document.getElementById('r-name').value.trim();
+    const user = document.getElementById('r-user').value.trim();
+    if (!name) { document.getElementById('re-0').textContent = 'Please enter your name'; return; }
+    if (!user || user.length < 2) { document.getElementById('re-0').textContent = 'Username must be at least 2 characters'; return; }
+    regData.name = name;
+    regData.username = user.replace('@','');
+    document.getElementById('re-0').textContent = '';
+    showRegStep(1);
+  } else if (regStep === 1) {
+    const k1 = document.getElementById('r-key').value;
+    const k2 = document.getElementById('r-key2').value;
+    if (k1.length !== 6 || !/^\d+$/.test(k1)) { document.getElementById('re-1').textContent = 'Key must be 6 digits'; return; }
+    if (k1 !== k2) { document.getElementById('re-1').textContent = 'Keys do not match'; return; }
+    regData.key = k1;
+    document.getElementById('re-1').textContent = '';
+    showRegStep(2);
+  } else if (regStep === 4) {
+    regData.ntfyTopic = document.getElementById('r-ntfy').value.trim();
+    showRegStep(5);
+  }
 }
 
-function regBack() {
-  stopRegCam();
-  $('reg-card-step2').classList.add('hidden');
-  $('reg-card-step1').classList.remove('hidden');
+// Registration PIN
+function regPinP(n) {
+  if (regPinBuf.length < 4) {
+    regPinBuf += n;
+    updateRegPinDots();
+    if (regPinBuf.length === 4) {
+      setTimeout(() => {
+        regData.pin = regPinBuf;
+        document.getElementById('re-2').textContent = '';
+        regPinBuf = '';
+        updateRegPinDots();
+        showRegStep(3);
+      }, 200);
+    }
+  }
+}
+function regPinDel() { regPinBuf = regPinBuf.slice(0,-1); updateRegPinDots(); }
+function updateRegPinDots() {
+  for (let i=0;i<4;i++) document.getElementById('rpd'+i).classList[i<regPinBuf.length?'add':'remove']('on');
 }
 
-function skipBiometric() {
-  if (!confirm('Warning: Skipping biometric enrollment reduces security. Anyone with your Safe Key can access your account. Continue?')) return;
-  
-  const name = $('reg-name').value.trim();
-  const key = $('reg-key').value.trim();
-  const pin = $('reg-pin').value.trim();
-  const webhook = $('reg-webhook').value.trim();
+// Face Enrollment
+let feState = 'idle'; // idle | started | captured
+async function feAction() {
+  if (feState === 'idle') {
+    feState = 'started';
+    document.getElementById('fe-btn-lbl').textContent = 'Detecting face…';
+    ri('rb-3-ico', 'loader');
+    document.getElementById('fe-status').textContent = 'Loading face models…';
+    try {
+      // Load face-api via CDN dynamically
+      await loadFaceApiModels();
+      const stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:320,height:240}});
+      faceEnrollStream = stream;
+      const v = document.getElementById('fe-video');
+      v.srcObject = stream;
+      await new Promise(r => { v.onloadeddata = r; });
+      document.getElementById('fe-status').textContent = 'Look at the camera — center your face';
+      document.getElementById('fe-btn-lbl').textContent = 'Capture Face';
+      ri('rb-3-ico', 'camera');
+      feState = 'ready';
+    } catch(e) {
+      document.getElementById('fe-status').textContent = 'Camera unavailable';
+      ri('rb-3-ico', 'camera-off');
+      document.getElementById('fe-btn-lbl').textContent = 'Retry';
+      feState = 'idle';
+    }
+  } else if (feState === 'ready') {
+    feState = 'capturing';
+    document.getElementById('fe-status').textContent = 'Processing…';
+    ri('rb-3-ico', 'loader');
+    try {
+      const descriptor = await captureDescriptor('fe-video');
+      if (!descriptor) throw new Error('No face detected');
+      enrolledDescriptor = descriptor;
+      faceEnrollStream?.getTracks().forEach(t=>t.stop());
+      faceEnrollStream = null;
+      feState = 'done';
+      document.getElementById('fe-status').innerHTML = '<span class="fe-success">✓ Face enrolled successfully</span>';
+      document.getElementById('fe-btn-lbl').textContent = 'Continue';
+      ri('rb-3-ico', 'arrow-right');
+      document.getElementById('fe-canvas').style.display = 'block';
+      document.getElementById('fe-video').style.display = 'none';
+    } catch(e) {
+      document.getElementById('fe-status').textContent = 'Could not detect face — try again';
+      ri('rb-3-ico', 'camera');
+      document.getElementById('fe-btn-lbl').textContent = 'Try Again';
+      feState = 'ready';
+    }
+  } else if (feState === 'done') {
+    regData.faceDescriptor = Array.from(enrolledDescriptor);
+    showRegStep(4);
+  }
+}
 
-  const account = {
-    name, key, pin, webhook,
-    faceDescriptor: null,
-    biometricSkipped: true,
+function skipFace() {
+  faceEnrollStream?.getTracks().forEach(t=>t.stop());
+  faceEnrollStream = null;
+  regData.faceDescriptor = null;
+  showRegStep(4);
+}
+
+function regComplete() {
+  const user = {
+    name: regData.name,
+    username: regData.username,
+    key: regData.key,
+    pin: regData.pin || '1234',
+    faceDescriptor: regData.faceDescriptor || null,
+    ntfyTopic: regData.ntfyTopic,
     createdAt: Date.now()
   };
-  localStorage.setItem('nexus_account', JSON.stringify(account));
-  storedUser = account;
-
-  notif('info','Enrollment Complete','Biometric skipped. Account created with key-only security.');
-  goPage('safekey');
+  saveUser(user);
+  currentUser = user;
+  doLogin();
 }
 
-async function startRegScan() {
-  const ready = await loadFaceModels();
-  if (!ready) { 
-    notif('danger','Biometrics Unavailable','Could not load face models. You can skip this step.'); 
-    return; 
+// ── FACE API ──────────────────────────────────
+let faceApiScript = null, faceapi = null;
+
+async function loadFaceApiModels() {
+  if (faceModelsLoaded) return true;
+  // Try to access faceapi from global (if already loaded)
+  if (typeof window.faceapi !== 'undefined') {
+    faceapi = window.faceapi;
+  } else {
+    // Load as module
+    try {
+      const module = await import('https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.12/dist/face-api.esm.js');
+      faceapi = module;
+      window.faceapi = module;
+    } catch(e) {
+      throw new Error('Failed to load face-api');
+    }
   }
+  const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.12/model';
+  await Promise.all([
+    faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+    faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+    faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL)
+  ]);
+  faceModelsLoaded = true;
+  return true;
+}
 
-  try {
-    $('reg-cam-hint').textContent = 'Requesting camera access...';
-    
-    regStream = await navigator.mediaDevices.getUserMedia({ 
-      video: { 
-        facingMode: 'user',
-        width: { ideal: 640 },
-        height: { ideal: 480 }
-      } 
-    });
-    
-    const vid = $('reg-video');
-    vid.srcObject = regStream;
-    vid.style.display = 'block';
-    $('reg-cam-placeholder').style.display = 'none';
-    
-    await vid.play();
-
-    $('reg-cam-hint').textContent = 'Look at the camera. Hold still…';
-    $('reg-scan-btn').classList.add('hidden');
-    updateFaceBars(1);
-
-    let attempts = 0;
-    let faceDetected = false;
-    
-    const iv = setInterval(async () => {
-      attempts++;
-      const d = await getFaceDescriptor(vid);
-      
-      if (d) {
-        faceDetected = true;
-        const quality = Math.min(attempts / 3, 1);
-        updateFaceBars(Math.ceil(quality * 4));
-        $('reg-cam-hint').textContent = 'Face detected! Hold steady…';
-      } else if (faceDetected) {
-        $('reg-cam-hint').textContent = 'Face lost. Look at camera…';
-      } else {
-        $('reg-cam-hint').textContent = `Scanning${'.'.repeat(attempts % 4)}`;
-      }
-
-      if (attempts >= 5 && d) {
-        clearInterval(iv);
-        currentFaceDescriptor = d;
-        $('reg-cam-hint').textContent = '✓ Face captured successfully';
-        $('reg-cam-hint').style.color = 'var(--green)';
-        updateFaceBars(4);
-        stopRegCam();
-        $('reg-submit-btn').classList.remove('hidden');
-        $('skip-bio-btn').style.display = 'none';
-      } else if (attempts > 20) {
-        clearInterval(iv);
-        $('reg-cam-hint').textContent = 'Could not detect face. Try again or skip.';
-        $('reg-cam-hint').style.color = 'var(--red)';
-        $('reg-scan-btn').classList.remove('hidden');
-        $('reg-scan-btn').innerHTML = '<span>Retry Scan</span>';
-      }
-    }, 600);
-  } catch(e) {
-    console.error('Camera error:', e);
-    $('reg-cam-hint').textContent = 'Camera blocked or unavailable. Check permissions.';
-    $('reg-cam-hint').style.color = 'var(--red)';
-    notif('danger','Camera Error','Allow camera access in browser settings, or skip biometric.');
+async function captureDescriptor(videoId) {
+  const video = document.getElementById(videoId);
+  let attempts = 0;
+  while (attempts < 20) {
+    const detection = await faceapi
+      .detectSingleFace(video, new faceapi.TinyFaceDetectorOptions({ scoreThreshold: 0.4 }))
+      .withFaceLandmarks()
+      .withFaceDescriptor();
+    if (detection) return detection.descriptor;
+    await new Promise(r => setTimeout(r, 300));
+    attempts++;
   }
-}
-
-function updateFaceBars(n) {
-  $$('#face-bars .fbar').forEach((b,i) => b.classList.toggle('ok', i < n));
-}
-
-function stopRegCam() {
-  if (regStream) { 
-    regStream.getTracks().forEach(t => t.stop()); 
-    regStream = null; 
-  }
-  const vid = $('reg-video');
-  if (vid) { vid.srcObject = null; vid.style.display = 'none'; }
-  const placeholder = $('reg-cam-placeholder');
-  if (placeholder) placeholder.style.display = 'flex';
-}
-
-function submitRegistration() {
-  const name = $('reg-name').value.trim();
-  const key = $('reg-key').value.trim();
-  const pin = $('reg-pin').value.trim();
-  const webhook = $('reg-webhook').value.trim();
-
-  const account = {
-    name, key, pin, webhook,
-    faceDescriptor: currentFaceDescriptor ? Array.from(currentFaceDescriptor) : null,
-    biometricSkipped: !currentFaceDescriptor,
-    createdAt: Date.now()
-  };
-  localStorage.setItem('nexus_account', JSON.stringify(account));
-  storedUser = account;
-
-  notif('success','Enrollment Complete','Your biometric profile has been saved');
-  goPage('safekey');
-}
-
-function goExistingUser() {
-  if (storedUser) goPage('safekey');
-  else notif('info','No Account','Please register first');
-}
-
-// ═══════════════════════════════════════════
-//  AUTHENTICATION FLOW
-// ═══════════════════════════════════════════
-function getAccount() {
-  if (storedUser) return storedUser;
-  const raw = localStorage.getItem('nexus_account');
-  if (raw) { storedUser = JSON.parse(raw); return storedUser; }
   return null;
 }
 
+function euclideanDist(a, b) {
+  let sum = 0;
+  for (let i = 0; i < a.length; i++) sum += (a[i]-b[i])**2;
+  return Math.sqrt(sum);
+}
+
+// ── AUTH ──────────────────────────────────────
 function skInput() {
-  if ($('sk-input').value.length === 6) setTimeout(verifyKey, 80);
+  if (document.getElementById('sk-input').value.length === 6) setTimeout(verifyKey, 80);
 }
 function skKeydown(e) { if (e.key === 'Enter') verifyKey(); }
 
-function verifyKey() {
-  const key = $('sk-input').value;
-  const err = $('sk-error');
-  const acc = getAccount();
-
-  if (!acc) { notif('warning','No Account','Register first'); goPage('register'); return; }
+async function verifyKey() {
+  const user = getUser();
+  if (!user) { goRegister(); return; }
+  const key = document.getElementById('sk-input').value;
+  const err = document.getElementById('sk-error');
   if (key.length < 6) { err.textContent = 'Enter all 6 digits'; return; }
-
-  if (key === acc.key) {
-    err.textContent = '';
-    if (acc.faceDescriptor && !acc.biometricSkipped) {
-      startFaceVerify();
-    } else {
-      loginSuccess();
-      notif('info','Logged In','Biometric verification skipped for this account');
-    }
-  } else {
+  if (key !== user.key) {
     err.textContent = 'Authentication failed — access denied';
     err.classList.add('shake');
     setTimeout(() => err.classList.remove('shake'), 500);
-    $('sk-input').value = '';
-    notif('danger','Wrong Key','Unauthorized attempt logged');
+    document.getElementById('sk-input').value = '';
+    fireIntruderAlert('Wrong key entered');
+    return;
+  }
+  // Key correct — check if face enrolled
+  if (user.faceDescriptor) {
+    err.textContent = '';
+    await startFaceVerify();
+  } else {
+    doLogin();
   }
 }
 
-// ── Face Verification (Login Step 2)
 async function startFaceVerify() {
-  const ready = await loadFaceModels();
-  if (!ready) { 
-    notif('warning','Biometrics Failed','Face models unavailable. Logging in with key only.');
-    loginSuccess();
-    return; 
-  }
-
-  $('face-verify-overlay').classList.remove('hidden');
-  $('fv-status').textContent = 'Initializing camera…';
-
+  const overlay = document.getElementById('fv-overlay');
+  overlay.classList.remove('hidden');
+  document.getElementById('fv-status').textContent = 'Loading models…';
   try {
-    verifyStream = await navigator.mediaDevices.getUserMedia({ 
-      video: { 
-        facingMode: 'user',
-        width: { ideal: 640 },
-        height: { ideal: 480 }
-      } 
-    });
-    
-    const vid = $('fv-verify');
-    vid.srcObject = verifyStream;
-    vid.style.display = 'block';
-    $('verify-placeholder').style.display = 'none';
-    
-    await vid.play();
+    await loadFaceApiModels();
+    const stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:320,height:240}});
+    faceVerifyStream = stream;
+    const v = document.getElementById('fv-video');
+    v.srcObject = stream;
+    await new Promise(r => { v.onloadeddata = r; });
+    document.getElementById('fv-status').textContent = 'Look at the camera…';
+    verifyFaceLoop();
+  } catch(e) {
+    document.getElementById('fv-status').textContent = 'Camera error — logging in without Face ID';
+    setTimeout(() => { cleanupVerify(); doLogin(); }, 1500);
+  }
+}
 
-    $('fv-status').textContent = 'Look at the camera…';
-    
-    const acc = getAccount();
-    if (!acc || !acc.faceDescriptor) {
-      cancelFaceVerify();
-      loginSuccess();
+async function verifyFaceLoop() {
+  const user = getUser();
+  if (!user?.faceDescriptor) { cleanupVerify(); doLogin(); return; }
+  document.getElementById('fv-status').textContent = 'Scanning biometrics…';
+  try {
+    const descriptor = await captureDescriptor('fv-video');
+    if (!descriptor) {
+      document.getElementById('fv-status').textContent = 'No face detected — trying again…';
+      setTimeout(verifyFaceLoop, 800);
       return;
     }
-    
-    const storedDesc = new Float32Array(acc.faceDescriptor);
-    let bestDist = 1;
-    let attempts = 0;
-    let faceFound = false;
-
-    const iv = setInterval(async () => {
-      attempts++;
-      const curr = await getFaceDescriptor(vid);
-      
-      if (curr) {
-        faceFound = true;
-        const dist = compareFaces(storedDesc, curr);
-        if (dist < bestDist) bestDist = dist;
-        const matchPct = Math.round((1 - dist) * 100);
-        $('fv-status').textContent = `Match: ${matchPct}%`;
-      } else if (faceFound) {
-        $('fv-status').textContent = 'Face lost. Look at camera…';
-      } else {
-        $('fv-status').textContent = `Scanning${'.'.repeat(attempts % 4)}`;
-      }
-
-      if (attempts >= 15) {
-        clearInterval(iv);
-        stopVerifyCam();
-        $('face-verify-overlay').classList.add('hidden');
-
-        if (bestDist < 0.55) {
-          loginSuccess();
-          notif('success','Face Verified',`Welcome back, ${acc.name}`);
-        } else {
-          triggerIntruder(vid, bestDist);
-        }
-      }
-    }, 400);
+    const storedDesc = new Float32Array(user.faceDescriptor);
+    const dist = euclideanDist(descriptor, storedDesc);
+    if (dist < 0.55) {
+      document.getElementById('fv-status').textContent = '✓ Identity confirmed';
+      setTimeout(() => { cleanupVerify(); doLogin(); }, 600);
+    } else {
+      document.getElementById('fv-status').textContent = '✗ Face mismatch — capturing intruder…';
+      await captureAndAlertIntruder('Face mismatch on login attempt');
+      setTimeout(() => {
+        cleanupVerify();
+        const err = document.getElementById('sk-error');
+        err.textContent = 'Biometric mismatch — access denied';
+        err.classList.add('shake');
+        setTimeout(() => err.classList.remove('shake'), 500);
+        document.getElementById('sk-input').value = '';
+      }, 1000);
+    }
   } catch(e) {
-    console.error('Camera error:', e);
-    $('fv-status').textContent = 'Camera blocked or unavailable';
-    notif('warning','Camera Error','Using key-only login. Check camera permissions.');
-    setTimeout(() => {
-      cancelFaceVerify();
-      loginSuccess();
-    }, 1500);
+    document.getElementById('fv-status').textContent = 'Scan error — retrying…';
+    setTimeout(verifyFaceLoop, 600);
   }
-}
-
-function stopVerifyCam() {
-  if (verifyStream) { 
-    verifyStream.getTracks().forEach(t => t.stop()); 
-    verifyStream = null; 
-  }
-  const vid = $('fv-verify');
-  if (vid) { vid.srcObject = null; vid.style.display = 'none'; }
-  const placeholder = $('verify-placeholder');
-  if (placeholder) placeholder.style.display = 'flex';
 }
 
 function cancelFaceVerify() {
-  stopVerifyCam();
-  $('face-verify-overlay').classList.add('hidden');
+  cleanupVerify();
+  document.getElementById('sk-input').value = '';
 }
 
-// ── Intruder Handler
-async function triggerIntruder(videoEl, distance) {
-  let imgData = null;
-  
+function cleanupVerify() {
+  faceVerifyStream?.getTracks().forEach(t => t.stop());
+  faceVerifyStream = null;
+  document.getElementById('fv-overlay').classList.add('hidden');
+}
+
+// ── INTRUDER ALERT ────────────────────────────
+async function captureAndAlertIntruder(reason) {
+  const user = getUser();
   try {
+    // Capture photo from verify video
+    const video = document.getElementById('fv-video');
     const canvas = document.createElement('canvas');
     canvas.width = 320; canvas.height = 240;
     const ctx = canvas.getContext('2d');
-    ctx.translate(canvas.width, 0);
-    ctx.scale(-1, 1);
-    ctx.drawImage(videoEl, 0, 0, canvas.width, canvas.height);
-    imgData = canvas.toDataURL('image/jpeg', 0.6);
-  } catch(e) {
-    imgData = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-  }
-
-  const event = {
-    time: new Date().toISOString(),
-    location: userLoc ? `${userLoc.city}, ${userLoc.country}` : 'Unknown',
-    ip: userLoc ? userLoc.ip : 'Unknown',
-    distance: distance ? distance.toFixed(3) : 'N/A',
-    image: imgData
-  };
-
-  let log = JSON.parse(localStorage.getItem('nexus_sec_log') || '[]');
-  log.unshift(event);
-  if (log.length > 5) log = log.slice(0, 5);
-  localStorage.setItem('nexus_sec_log', JSON.stringify(log));
-
-  const acc = getAccount();
-  if (acc && acc.webhook) {
-    sendWebhookAlert(acc.webhook, event).catch(()=>{});
-  }
-
-  $('intruder-img').src = imgData;
-  $('intruder-meta').textContent = `${event.location} · ${new Date(event.time).toLocaleString()}`;
-  $('intruder-overlay').classList.remove('hidden');
-
-  if ('Notification' in window && Notification.permission === 'granted') {
-    new Notification('NEXUS Security Alert', { body: 'Unauthorized access attempt detected' });
-  } else if ('Notification' in window && Notification.permission !== 'denied') {
-    Notification.requestPermission().then(p => { 
-      if(p==='granted') new Notification('NEXUS Security Alert'); 
-    });
-  }
-
-  notif('danger','Intruder Alert','Unauthorized biometric mismatch detected');
-}
-
-async function sendWebhookAlert(url, event) {
-  try {
-    const payload = {
-      content: '🚨 **NEXUS INTRUDER ALERT** 🚨',
-      embeds: [{
-        title: 'Unauthorized Access Attempt',
-        description: 'Biometric mismatch detected',
-        color: 15158332,
-        fields: [
-          { name: 'Time', value: new Date(event.time).toLocaleString(), inline: true },
-          { name: 'Location', value: event.location, inline: true },
-          { name: 'Match Score', value: event.distance, inline: true }
-        ],
-        timestamp: event.time
-      }]
-    };
+    ctx.drawImage(video, 0, 0);
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
     
-    await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type':'application/json' },
-      body: JSON.stringify(payload)
-    });
+    // Send ntfy alert
+    if (user?.ntfyTopic) {
+      const topic = user.ntfyTopic;
+      const ts = new Date().toLocaleString();
+      // Text notification first
+      fetch(`https://ntfy.sh/${topic}`, {
+        method: 'POST',
+        headers: {
+          'Title': '🚨 NEXUS Security Alert',
+          'Priority': 'urgent',
+          'Tags': 'rotating_light,camera',
+          'Content-Type': 'text/plain'
+        },
+        body: `Unauthorized access attempt at ${ts}. Reason: ${reason}. A photo has been captured.`
+      });
+      // Send image
+      const blob = await (await fetch(dataUrl)).blob();
+      fetch(`https://ntfy.sh/${topic}`, {
+        method: 'POST',
+        headers: {
+          'Title': '📸 Intruder Photo',
+          'Filename': 'intruder.jpg',
+          'Priority': 'high',
+          'Content-Type': 'image/jpeg'
+        },
+        body: blob
+      });
+    }
+    notif('danger', 'Security Alert', 'Intruder detected · Photo captured · Alert sent');
   } catch(e) {
-    console.error('Webhook failed:', e);
+    notif('danger', 'Security Alert', 'Unauthorized access attempt detected');
   }
 }
 
-function closeIntruder() {
-  $('intruder-overlay').classList.add('hidden');
-  lockApp();
+async function fireIntruderAlert(reason) {
+  const user = getUser();
+  if (!user?.ntfyTopic) return;
+  try {
+    // Try to capture from any open camera
+    const stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}});
+    const v = document.createElement('video'); v.srcObject = stream; v.play();
+    await new Promise(r => setTimeout(r, 800));
+    const c = document.createElement('canvas'); c.width=320; c.height=240;
+    c.getContext('2d').drawImage(v,0,0);
+    stream.getTracks().forEach(t=>t.stop());
+    const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', 0.8));
+    const ts = new Date().toLocaleString();
+    fetch(`https://ntfy.sh/${user.ntfyTopic}`, {
+      method: 'POST',
+      headers: { 'Title': '🚨 Wrong Key Attempt', 'Priority': 'urgent', 'Tags': 'warning', 'Content-Type': 'text/plain' },
+      body: `Wrong safe key entered at ${ts}. Reason: ${reason}.`
+    });
+    fetch(`https://ntfy.sh/${user.ntfyTopic}`, {
+      method: 'POST',
+      headers: { 'Title': '📸 Intruder Photo', 'Filename': 'intruder.jpg', 'Content-Type': 'image/jpeg' },
+      body: blob
+    });
+  } catch(e) {}
 }
 
-// ── Login Success
-function loginSuccess() {
-  const acc = getAccount();
-  if (!acc) return;
-  currentUser = acc.name;
-  const ini = acc.name.charAt(0).toUpperCase();
-
-  $('sb-pname').textContent = acc.name;
-  $('wb-name').textContent = acc.name;
-  $('sb-av').textContent = ini;
-  $('wb-av').textContent = ini;
-  $('sb-pid').textContent = '#' + acc.name.slice(-4).toUpperCase().padStart(4,'·');
-
+function doLogin() {
+  currentUser = getUser();
+  if (!currentUser) return;
+  const ini = currentUser.name.charAt(0).toUpperCase();
+  document.getElementById('sb-pname').textContent = currentUser.name;
+  document.getElementById('wb-name').textContent = currentUser.name;
+  document.getElementById('sb-av').textContent = ini;
+  document.getElementById('wb-av').textContent = ini;
+  document.getElementById('sb-pid').textContent = '@' + currentUser.username;
   const h = new Date().getHours();
-  $('tb-greeting').textContent = (h<12?'Good morning':h<17?'Good afternoon':'Good evening') + ', ' + acc.name;
-
+  const greet = h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+  document.getElementById('tb-greeting').textContent = `${greet}, ${currentUser.name}`;
   sessionStart = Date.now();
-  sessionToken = Math.floor(Math.random()*1e9);
   goPage('main');
+  switchPanel('home');
   detectLocation();
   updateStats();
-
-  const log = JSON.parse(localStorage.getItem('nexus_sec_log') || '[]');
-  if (log.length > 0) {
-    notif('warning','Security Events',`${log.length} intrusion attempt(s) recorded. Check Security Log.`);
-  }
-}
-
-function forgotFlow() {
-  notif('info','Recovery','Contact your system administrator or reset account below');
-}
-
-function resetAccount() {
-  if (confirm('WARNING: This wipes ALL data including biometrics. Proceed?')) {
-    localStorage.removeItem('nexus_account');
-    localStorage.removeItem('nexus_sec_log');
-    storedUser = null;
-    currentFaceDescriptor = null;
-    notif('success','Reset','All account data cleared');
-    goPage('register');
-  }
-}
-
-function lockApp() {
-  $('sk-input').value = '';
-  $('sk-error').textContent = '';
-  msgUnlocked = false;
-  stopVerifyCam();
-  stopRegCam();
-  goPage('safekey');
-  notif('info','Locked','Terminal secured');
+  notif('success', 'Authenticated', `Welcome back, ${currentUser.name}`);
 }
 
 function goPage(n) {
-  $$('.page').forEach(p => p.classList.add('out'));
-  const target = $('page-' + n);
-  if (target) target.classList.remove('out');
+  document.querySelectorAll('.page').forEach(p => p.classList.add('out'));
+  document.getElementById('page-' + n)?.classList.remove('out');
 }
 
-// ═══════════════════════════════════════════
-//  APP PANELS
-// ═══════════════════════════════════════════
+function lockApp() {
+  document.getElementById('sk-input').value = '';
+  document.getElementById('sk-error').textContent = '';
+  msgUnlocked = false; cleanupVerify();
+  goPage('safekey');
+  notif('info', 'Locked', 'Terminal secured');
+}
+
+function resetAccount() {
+  if (confirm('Delete your account and start fresh? This cannot be undone.')) {
+    localStorage.removeItem(USER_KEY);
+    goRegister();
+  }
+}
+
 function switchPanel(n) {
-  $$('.panel').forEach(p => p.classList.add('hidden'));
-  const target = $('p-' + n);
-  if (target) target.classList.remove('hidden');
-  $$('.sb-item').forEach(i => i.classList.remove('active'));
-  const sb = $('sb-' + n);
-  if (sb) sb.classList.add('active');
+  document.querySelectorAll('.panel').forEach(p => p.classList.add('hidden'));
+  document.getElementById('p-' + n)?.classList.remove('hidden');
+  document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+  document.getElementById('sb-' + n)?.classList.add('active');
   if (n === 'msg') renderContacts();
 }
 
-function showSecurityLog() {
-  switchPanel('sec');
-  renderSecLog();
-}
-
-function renderSecLog() {
-  const body = $('sec-body');
-  const log = JSON.parse(localStorage.getItem('nexus_sec_log') || '[]');
-  if (!log.length) {
-    body.innerHTML = `<div class="empty-state" id="sec-empty"><div class="empty-ico"><i data-lucide="shield-check"></i></div><div class="empty-title">No security events</div><div class="empty-sub">Your account has not encountered any intrusion attempts</div></div>`;
-    lucide.createIcons({nodes:[body]});
-    return;
-  }
-  let html = `<div style="font-family:var(--display);font-size:18px;margin-bottom:14px;">Recent Events</div>`;
-  log.forEach(ev => {
-    html += `
-    <div class="sec-log-item">
-      <img class="sec-log-img" src="${ev.image}" alt="intruder" onerror="this.style.display='none'"/>
-      <div class="sec-log-info">
-        <div class="sec-log-title">Unauthorized Attempt</div>
-        <div class="sec-log-meta">${new Date(ev.time).toLocaleString()} · ${ev.location} · Match: ${ev.distance}</div>
-      </div>
-    </div>`;
-  });
-  body.innerHTML = html;
-  lucide.createIcons({nodes:[body]});
-}
-
-// ── PIN & Messenger
 function openMessenger() {
   if (msgUnlocked) { switchPanel('msg'); return; }
   pinBuf = ''; updatePinDots();
-  $('pin-modal').classList.remove('hidden');
+  document.getElementById('pin-modal').classList.remove('hidden');
 }
-function closePinModal() { $('pin-modal').classList.add('hidden'); pinBuf = ''; }
-function pinP(n) { if (pinBuf.length < 4) { pinBuf += n; updatePinDots(); if (pinBuf.length===4) checkPin(); } }
-function pinDel() { pinBuf = pinBuf.slice(0,-1); updatePinDots(); }
-function updatePinDots() { for (let i=0;i<4;i++) $('pd'+i).classList[i<pinBuf.length?'add':'remove']('on'); }
+function closePinModal() { document.getElementById('pin-modal').classList.add('hidden'); pinBuf = ''; }
+function pinP(n) { if (pinBuf.length<4){ pinBuf+=n; updatePinDots(); if(pinBuf.length===4) checkPin(); } }
+function pinDel() { pinBuf=pinBuf.slice(0,-1); updatePinDots(); }
+function updatePinDots() { for(let i=0;i<4;i++) document.getElementById('pd'+i).classList[i<pinBuf.length?'add':'remove']('on'); }
 function checkPin() {
-  const acc = getAccount();
-  if (!acc) return;
-  if (pinBuf === acc.pin) { msgUnlocked=true; closePinModal(); switchPanel('msg'); notif('success','Vault opened','Messenger decrypted'); }
-  else { pinBuf=''; updatePinDots(); notif('danger','Wrong PIN','Access denied'); }
+  const user = getUser();
+  if (pinBuf === (user?.pin || '1234')) {
+    msgUnlocked = true; closePinModal(); switchPanel('msg');
+    notif('success', 'Vault opened', 'Messenger decrypted');
+  } else {
+    pinBuf = ''; updatePinDots();
+    notif('danger', 'Wrong PIN', 'Access denied');
+    fireIntruderAlert('Wrong messenger PIN entered');
+  }
 }
 
-// ═══════════════════════════════════════════
-//  FILE SYSTEM
-// ═══════════════════════════════════════════
+// ── FILE UPLOAD ───────────────────────────────
 function fmtSize(b) {
-  if (b < 1024) return b + 'B';
-  if (b < 1048576) return (b/1024).toFixed(1) + 'KB';
-  return (b/1048576).toFixed(1) + 'MB';
+  if (b<1024) return b+'B'; if (b<1048576) return (b/1024).toFixed(1)+'KB';
+  return (b/1048576).toFixed(1)+'MB';
 }
 function fileIconName(file) {
-  const t = file.type, n = file.name.toLowerCase();
-  if (t.startsWith('image/')) return 'image';
-  if (n.endsWith('.pdf')) return 'file-text';
-  if (n.endsWith('.doc') || n.endsWith('.docx')) return 'file-type-2';
-  if (n.endsWith('.csv')) return 'table-2';
-  if (n.endsWith('.json')) return 'braces';
-  if (n.endsWith('.md')) return 'file-code-2';
+  const t=file.type, n=file.name.toLowerCase();
+  if(t.startsWith('image/')) return 'image';
+  if(n.endsWith('.pdf')) return 'file-text';
+  if(n.endsWith('.doc')||n.endsWith('.docx')) return 'file-type-2';
+  if(n.endsWith('.csv')) return 'table-2';
+  if(n.endsWith('.json')) return 'braces';
+  if(n.endsWith('.md')) return 'file-code-2';
   return 'file';
 }
 function handleUpload(ctx, input) {
-  const files = [...input.files];
-  if (!files.length) return;
+  const files=[...input.files]; if(!files.length) return;
   files.forEach(f => {
-    if (f.size > 20*1024*1024) { notif('warning','File too large', f.name + ' exceeds 20MB'); return; }
+    if(f.size>20*1024*1024){ notif('warning','Too large',f.name+' > 20MB'); return; }
     uploads[ctx].push(f);
   });
-  input.value = '';
-  renderChips(ctx);
-  notif('info','Attached', files.length===1 ? files[0].name : files.length + ' files');
+  input.value=''; renderChips(ctx);
+  notif('info','Attached', files.length===1?files[0].name:files.length+' files');
 }
 function renderChips(ctx) {
-  const row = $(ctx + '-chips');
-  row.innerHTML = '';
-  const frag = document.createDocumentFragment();
-  uploads[ctx].forEach((f, i) => {
-    const chip = document.createElement('div');
-    chip.className = 'chip';
-    const ico = document.createElement('span'); ico.className = 'chip-ico'; ico.appendChild(icon(fileIconName(f)));
-    const nm  = document.createElement('span'); nm.className  = 'chip-n';   nm.textContent = f.name;
-    const sz  = document.createElement('span'); sz.className  = 'chip-s';   sz.textContent = fmtSize(f.size);
-    const del = document.createElement('span'); del.className = 'chip-x';   del.appendChild(icon('x')); del.onclick = () => removeFile(ctx, i);
-    chip.appendChild(ico); chip.appendChild(nm); chip.appendChild(sz); chip.appendChild(del);
-    frag.appendChild(chip);
+  const row=document.getElementById(ctx+'-chips'); row.innerHTML='';
+  uploads[ctx].forEach((f,i)=>{
+    const chip=document.createElement('div'); chip.className='chip';
+    const ico=document.createElement('span'); ico.className='chip-ico'; ico.appendChild(icon(fileIconName(f)));
+    const nm=document.createElement('span'); nm.className='chip-n'; nm.textContent=f.name;
+    const sz=document.createElement('span'); sz.className='chip-s'; sz.textContent=fmtSize(f.size);
+    const del=document.createElement('span'); del.className='chip-x'; del.appendChild(icon('x')); del.onclick=()=>removeFile(ctx,i);
+    chip.appendChild(ico);chip.appendChild(nm);chip.appendChild(sz);chip.appendChild(del);
+    row.appendChild(chip);
   });
-  row.appendChild(frag);
-  lucide.createIcons({ nodes: [row] });
+  lucide.createIcons({nodes:[row]});
 }
-function removeFile(ctx, idx) { uploads[ctx].splice(idx, 1); renderChips(ctx); }
-
+function removeFile(ctx,idx){ uploads[ctx].splice(idx,1); renderChips(ctx); }
 async function readTextFiles(ctx) {
-  const textTypes = ['text/', '.md', '.json', '.csv', '.txt'];
-  const textFiles = uploads[ctx].filter(f => textTypes.some(t => f.type.startsWith(t) || f.name.toLowerCase().endsWith(t)));
-  if (!textFiles.length) return '';
-  const parts = await Promise.all(textFiles.map(f => f.text().then(t => `[File: ${f.name}]\n${t.slice(0, 3000)}`)));
+  const types=['text/','.md','.json','.csv','.txt'];
+  const textFiles=uploads[ctx].filter(f=>types.some(t=>f.type.startsWith(t)||f.name.toLowerCase().endsWith(t)));
+  if(!textFiles.length) return '';
+  const parts=await Promise.all(textFiles.map(f=>f.text().then(t=>`[File: ${f.name}]\n${t.slice(0,4000)}`)));
   return parts.join('\n\n');
 }
-
 function appendFileMsgs(bid, files) {
-  const b = $(bid);
-  files.forEach(f => {
-    const d = document.createElement('div'); d.className = 'msg user';
-    const bub = document.createElement('div'); bub.className = 'm-bub'; bub.style.maxWidth = '75%';
-    if (f.type.startsWith('image/')) {
-      const url = URL.createObjectURL(f);
-      const img = document.createElement('img'); img.className = 'u-img'; img.src = url; img.alt = f.name; img.loading = 'lazy';
+  const b=document.getElementById(bid);
+  files.forEach(f=>{
+    const d=document.createElement('div'); d.className='msg user';
+    const bub=document.createElement('div'); bub.className='m-bub'; bub.style.maxWidth='75%';
+    if(f.type.startsWith('image/')){
+      const img=document.createElement('img'); img.className='u-img'; img.src=URL.createObjectURL(f); img.alt=f.name;
       bub.appendChild(img);
     } else {
-      const ref = document.createElement('div'); ref.className='f-ref';
-      const fIco=document.createElement('span');fIco.style.color='var(--gold)';fIco.style.fontSize='15px';fIco.appendChild(icon(fileIconName(f)));
-      const fNm=document.createElement('span');fNm.className='f-ref-n';fNm.textContent=f.name;
-      const fSz=document.createElement('span');fSz.className='f-ref-s';fSz.textContent=fmtSize(f.size);
+      const ref=document.createElement('div'); ref.className='f-ref';
+      const fIco=document.createElement('span'); fIco.style.cssText='color:var(--gold);font-size:15px;'; fIco.appendChild(icon(fileIconName(f)));
+      const fNm=document.createElement('span'); fNm.className='f-ref-n'; fNm.textContent=f.name;
+      const fSz=document.createElement('span'); fSz.className='f-ref-s'; fSz.textContent=fmtSize(f.size);
       ref.appendChild(fIco);ref.appendChild(fNm);ref.appendChild(fSz);bub.appendChild(ref);
     }
-    const av = document.createElement('div'); av.className = 'm-av'; av.appendChild(icon('user'));
-    d.appendChild(bub); d.appendChild(av);
-    b.appendChild(d);
+    const av=document.createElement('div'); av.className='m-av'; av.appendChild(icon('user'));
+    d.appendChild(bub);d.appendChild(av); b.appendChild(d); b.scrollTop=b.scrollHeight;
+    lucide.createIcons({nodes:[d]});
   });
-  lucide.createIcons({ nodes: [b] });
-  b.scrollTop = b.scrollHeight;
 }
 
-// ═══════════════════════════════════════════
-//  AI ASSISTANT — Streaming Engine
-// ═══════════════════════════════════════════
+// ── AI CHAT (Streaming GPT-4o) ────────────────
+const AI_SYSTEM = `You are NEXUS AI — a sharp, powerful assistant inside a private secure terminal. 
+Be direct, smart, and concise. Format responses with structure when helpful (use markdown: **bold**, bullet points, code blocks). 
+You have access to the user's context. Be genuinely helpful with any question.`;
+
 async function sendAI() {
-  const ta = $('ai-ta'), text = ta.value.trim();
-  const hasFiles = uploads.ai.length > 0;
-  if (!text && !hasFiles) return;
-  ta.value = ''; ta.style.height = 'auto';
+  const ta=document.getElementById('ai-ta'), text=ta.value.trim();
+  const hasFiles=uploads.ai.length>0;
+  if(!text && !hasFiles) return;
+  ta.value=''; ta.style.height='auto';
 
-  if (text && (text.toLowerCase().includes('generate image') || text.toLowerCase().includes('create image'))) {
-    openImgen(text.replace(/generate image|create image/gi, '').trim());
-    return;
-  }
+  if(hasFiles) appendFileMsgs('ai-body',uploads.ai);
+  if(text) appendMsg('ai-body','user',text);
 
-  if (hasFiles) appendFileMsgs('ai-body', uploads.ai);
-  if (text) appendMsg('ai-body', 'user', text);
+  const fileCtx=await readTextFiles('ai');
+  const content=fileCtx?(fileCtx+(text?'\n\nQuestion: '+text:'')):(text||'[File shared]');
+  uploads.ai=[]; renderChips('ai');
 
-  const fileCtx = await readTextFiles('ai');
-  const fullContent = fileCtx ? (fileCtx + (text ? '\n\nUser question: ' + text : '')) : (text || '[File uploaded]');
-  uploads.ai = []; renderChips('ai');
-
-  if (aiHistory.length > 20) aiHistory = aiHistory.slice(-20);
-  aiHistory.push({ role: 'user', content: fullContent });
-
+  aiHistory.push({role:'user',content});
   msgCount++; updateStats();
-
-  const b = $('ai-body');
-  const d = document.createElement('div'); d.className = 'msg ai'; d.id = 'streaming-msg';
-  const av = document.createElement('div'); av.className = 'm-av'; av.appendChild(icon('bot'));
-  const bub = document.createElement('div'); bub.className = 'm-bub'; bub.textContent = '';
-  d.appendChild(av); d.appendChild(bub);
-  b.appendChild(d); b.scrollTop = b.scrollHeight;
-  lucide.createIcons({ nodes: [d] });
-
+  
+  showTyping();
   try {
-    const systemPrompt = `You are NEXUS AI, a high-performance financial and general intelligence assistant. Be concise, accurate, and sophisticated. Use markdown formatting where helpful.`;
-    const conversation = aiHistory.map(m => m.role==='user' ? `User: ${m.content}` : `Assistant: ${m.content}`).join('\n');
-    const prompt = `${systemPrompt}\n\n${conversation}\nAssistant:`;
-
-    const response = await fetch(`${TEXT_API}${encodeURIComponent(prompt)}?model=openai&seed=${Math.floor(Math.random()*10000)}&stream=true`);
-    if (!response.ok) throw new Error('API error');
-
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let fullResponse = '';
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      const chunk = decoder.decode(value, { stream: true });
-      fullResponse += chunk;
-      bub.textContent = fullResponse;
-      b.scrollTop = b.scrollHeight;
-      await new Promise(r => requestAnimationFrame(r));
-    }
-
-    d.removeAttribute('id');
-    aiHistory.push({ role: 'assistant', content: fullResponse });
+    await streamAI(aiHistory);
   } catch(e) {
-    d.removeAttribute('id');
-    bub.textContent = 'Connection error. Please retry.';
+    hideTyping();
+    appendMsg('ai-body','ai','Connection error — please try again.');
+  }
+}
+
+async function streamAI(msgs) {
+  const body = {
+    messages: [
+      { role: 'system', content: AI_SYSTEM },
+      ...msgs.slice(-20) // keep last 20 messages for context
+    ],
+    model: 'openai',
+    stream: true,
+    seed: Math.floor(Math.random()*99999)
+  };
+  
+  const r = await fetch(AI_API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  
+  if (!r.ok) throw new Error('API error');
+  
+  hideTyping();
+  
+  // Create streaming message bubble
+  const b = document.getElementById('ai-body');
+  const msgEl = document.createElement('div'); msgEl.className = 'msg ai';
+  const av = document.createElement('div'); av.className = 'm-av'; av.appendChild(icon('bot'));
+  const bub = document.createElement('div'); bub.className = 'm-bub'; bub.style.whiteSpace = 'pre-wrap';
+  msgEl.appendChild(av); msgEl.appendChild(bub);
+  b.appendChild(msgEl); b.scrollTop = b.scrollHeight;
+  lucide.createIcons({ nodes: [msgEl] });
+
+  const reader = r.body.getReader();
+  const decoder = new TextDecoder();
+  let fullText = '';
+  
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    const chunk = decoder.decode(value, { stream: true });
+    const lines = chunk.split('\n');
+    for (const line of lines) {
+      if (!line.startsWith('data: ')) continue;
+      const data = line.slice(6).trim();
+      if (data === '[DONE]') break;
+      try {
+        const parsed = JSON.parse(data);
+        const delta = parsed.choices?.[0]?.delta?.content || '';
+        if (delta) {
+          fullText += delta;
+          bub.textContent = fullText;
+          b.scrollTop = b.scrollHeight;
+        }
+      } catch {}
+    }
+  }
+  
+  // Fallback: if no streaming content, try GET
+  if (!fullText) {
+    const prompt = msgs.map(m => m.role==='user'?`User: ${m.content}`:`Assistant: ${m.content}`).join('\n') + '\nAssistant:';
+    const gr = await fetch(`${AI_API}${encodeURIComponent(prompt)}?model=openai`);
+    fullText = await gr.text();
+    bub.textContent = fullText;
+  }
+  
+  if (fullText) {
+    aiHistory.push({ role: 'assistant', content: fullText });
   }
 }
 
 function appendMsg(bid, role, text) {
-  const b = $(bid), d = document.createElement('div');
-  d.className = 'msg ' + role;
-  const av = document.createElement('div'); av.className = 'm-av'; av.appendChild(icon(role==='ai'?'bot':'user'));
-  const bub = document.createElement('div'); bub.className = 'm-bub'; bub.textContent = text;
-  if (role === 'ai') { d.appendChild(av); d.appendChild(bub); }
-  else               { d.appendChild(bub); d.appendChild(av); }
-  b.appendChild(d); b.scrollTop = b.scrollHeight;
-  lucide.createIcons({ nodes: [d] });
+  const b=document.getElementById(bid), d=document.createElement('div');
+  d.className='msg '+role;
+  const av=document.createElement('div'); av.className='m-av'; av.appendChild(icon(role==='ai'?'bot':'user'));
+  const bub=document.createElement('div'); bub.className='m-bub'; bub.style.whiteSpace='pre-wrap'; bub.textContent=text;
+  if(role==='ai'){d.appendChild(av);d.appendChild(bub);}else{d.appendChild(bub);d.appendChild(av);}
+  b.appendChild(d); b.scrollTop=b.scrollHeight;
+  lucide.createIcons({nodes:[d]});
+}
+function aiKey(e){ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendAI();} }
+function showTyping(){
+  const b=document.getElementById('ai-body'),d=document.createElement('div');
+  d.className='msg ai';d.id='tind';
+  const av=document.createElement('div');av.className='m-av';av.appendChild(icon('bot'));
+  const bub=document.createElement('div');bub.className='m-bub';
+  bub.style.cssText='display:flex;gap:5px;align-items:center;padding:13px 16px;';
+  bub.innerHTML='<span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span>';
+  d.appendChild(av);d.appendChild(bub);b.appendChild(d);b.scrollTop=b.scrollHeight;
+  lucide.createIcons({nodes:[d]});
+}
+function hideTyping(){ document.getElementById('tind')?.remove(); }
+function clearAI(){
+  const b=document.getElementById('ai-body');b.innerHTML='';
+  const d=document.createElement('div');d.className='msg ai';
+  const av=document.createElement('div');av.className='m-av';av.appendChild(icon('bot'));
+  const bub=document.createElement('div');bub.className='m-bub';bub.textContent='Chat cleared. Ready.';
+  d.appendChild(av);d.appendChild(bub);b.appendChild(d);
+  lucide.createIcons({nodes:[d]});
+  aiHistory=[];uploads.ai=[];renderChips('ai');
 }
 
-function aiKey(e) { if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); sendAI(); } }
-function clearAI() {
-  const b = $('ai-body');
-  b.innerHTML = '';
-  const d = document.createElement('div'); d.className = 'msg ai';
-  const av = document.createElement('div'); av.className = 'm-av'; av.appendChild(icon('bot'));
-  const bub = document.createElement('div'); bub.className = 'm-bub'; bub.textContent = 'Chat cleared. How can I help?';
-  d.appendChild(av); d.appendChild(bub); b.appendChild(d);
-  lucide.createIcons({ nodes: [d] });
-  aiHistory = []; uploads.ai = []; renderChips('ai');
-}
-
-// ═══════════════════════════════════════════
-//  IMAGE GENERATION
-// ═══════════════════════════════════════════
+// ── IMAGE GEN ─────────────────────────────────
 function openImgen(pre='') {
-  $('imgen-modal').classList.remove('hidden');
-  $('ig-prompt').value = pre;
-  $('ig-preview').innerHTML = '<div class="ig-empty">Awaiting creative direction…</div>';
+  document.getElementById('imgen-modal').classList.remove('hidden');
+  document.getElementById('ig-prompt').value=pre||'';
+  document.getElementById('ig-preview').innerHTML='<div class="ig-empty">Awaiting creative direction…</div>';
 }
-function closeImgen() { $('imgen-modal').classList.add('hidden'); }
-function generateImage() {
-  const p = $('ig-prompt').value.trim(); if (!p) return;
-  const el = $('ig-preview');
-  el.innerHTML = '<div class="ig-empty" style="opacity:.5">Generating…</div>';
-  const url = `${IMAGE_API}${encodeURIComponent(p)}?width=1024&height=1024&nologo=true&seed=${Math.floor(Math.random()*9999)}`;
-  const img = new Image(); img.loading = 'lazy';
-  img.onload = () => { el.innerHTML=''; el.appendChild(img); img.style.cssText='width:100%;height:100%;object-fit:cover;'; };
-  img.onerror = () => { el.innerHTML='<div class="ig-empty">Generation failed. Try again.</div>'; };
-  img.src = url;
+function closeImgen(){ document.getElementById('imgen-modal').classList.add('hidden'); }
+function generateImage(){
+  const p=document.getElementById('ig-prompt').value.trim(); if(!p) return;
+  const el=document.getElementById('ig-preview');
+  el.innerHTML='<div class="ig-empty" style="opacity:.4;animation:tB 1s infinite;">Generating…</div>';
+  const url=`${IMAGE_API}${encodeURIComponent(p)}?width=1024&height=1024&nologo=true&seed=${Date.now()}`;
+  const img=new Image();
+  img.onload=()=>{ el.innerHTML=''; el.appendChild(img); img.style.cssText='width:100%;height:100%;object-fit:cover;'; };
+  img.src=url;
 }
 
-// ═══════════════════════════════════════════
-//  VOICE INPUT
-// ═══════════════════════════════════════════
-function toggleVoice() {
-  if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) { notif('warning','Not supported','Use Chrome or Edge'); return; }
-  if (isListening) { recognition?.stop(); return; }
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SR(); recognition.lang = 'en-US'; recognition.interimResults = false;
-  recognition.onresult = e => {
-    const txt = e.results[0][0].transcript;
-    const id = $('p-ai').classList.contains('hidden') ? 'msg-ta' : 'ai-ta';
-    $(id).value = txt;
+// ── VOICE ─────────────────────────────────────
+function toggleVoice(){
+  if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){ notif('warning','Not supported','Use Chrome or Edge'); return; }
+  if(isListening){ recognition?.stop(); return; }
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  recognition=new SR(); recognition.lang='en-US'; recognition.continuous=false; recognition.interimResults=false;
+  recognition.onresult=e=>{
+    const txt=e.results[0][0].transcript;
+    const id=document.getElementById('p-ai').classList.contains('hidden')?'msg-ta':'ai-ta';
+    document.getElementById(id).value=txt;
     stopVoice();
   };
-  recognition.onend = stopVoice;
-  recognition.start();
-  isListening = true;
-  $('vbtn').classList.add('on');
+  recognition.onend=stopVoice;
+  recognition.start(); isListening=true;
+  document.getElementById('vbtn')?.classList.add('on');
+  notif('info','Listening','Speak now…');
 }
-function stopVoice() { isListening=false; $('vbtn')?.classList.remove('on'); }
+function stopVoice(){ isListening=false; document.getElementById('vbtn')?.classList.remove('on'); }
 
-// ═══════════════════════════════════════════
-//  MESSENGER
-// ═══════════════════════════════════════════
-let contacts = [
-  {id:1,name:'Alice Chen',   init:'AC',online:true, preview:'Are we still on for the meeting?',time:'2m', unread:1,msgs:[{from:'them',text:'Hello! How are you?'}]},
-  {id:2,name:'Bob Miller',   init:'BM',online:false,preview:'Check this report I found',         time:'1h', unread:0,msgs:[]},
-  {id:3,name:'Sarah Voss',   init:'SV',online:true, preview:'The quarterly numbers look great',  time:'3h', unread:2,msgs:[]},
-  {id:4,name:'James Wright', init:'JW',online:false,preview:'Pushing the update tonight',        time:'1d', unread:0,msgs:[]},
+// ── MESSENGER ─────────────────────────────────
+let contacts=[
+  {id:1,name:'Alice Chen',   init:'AC',online:true, preview:'Are we still on for the meeting?',time:'2m',unread:1,msgs:[{from:'them',text:'Hello! How are you?'},{from:'them',text:'Are we still on for the meeting?'}]},
+  {id:2,name:'Bob Miller',   init:'BM',online:false,preview:'Check this report I found',         time:'1h',unread:0,msgs:[]},
+  {id:3,name:'Sarah Voss',   init:'SV',online:true, preview:'The quarterly numbers look great',  time:'3h',unread:2,msgs:[{from:'them',text:'Hey!'},{from:'them',text:'The quarterly numbers look great'}]},
+  {id:4,name:'James Wright', init:'JW',online:false,preview:'Pushing the update tonight',        time:'1d',unread:0,msgs:[]},
 ];
-function renderContacts(f='') {
-  const l = $('clist');
-  const data = f ? contacts.filter(c => c.name.toLowerCase().includes(f.toLowerCase())) : contacts;
-  const frag = document.createDocumentFragment();
-  data.forEach(c => {
-    const el = document.createElement('div');
-    el.className = 'ci ' + (activeContact?.id===c.id?'active':'');
-    el.onclick = () => selContact(c.id);
-    el.innerHTML = `
-      <div class="ci-av">${c.init}</div>
-      <div style="flex:1;min-width:0;"><div class="ci-name">${c.name}</div><div class="ci-prev">${c.preview}</div></div>
-      <div style="text-align:right;flex-shrink:0;"><div class="ci-time">${c.time}</div>${c.unread?`<div class="ci-un">${c.unread}</div>`:''}</div>
-    `;
-    frag.appendChild(el);
-  });
-  l.innerHTML = ''; l.appendChild(frag);
+let activeContact=null;
+function renderContacts(f=''){
+  const l=document.getElementById('clist');
+  const data=f?contacts.filter(c=>c.name.toLowerCase().includes(f.toLowerCase())):contacts;
+  l.innerHTML=data.map(c=>`<div class="ci ${activeContact?.id===c.id?'active':''}" onclick="selContact(${c.id})"><div class="ci-av">${c.init}</div><div style="flex:1;min-width:0;"><div class="ci-name">${c.name}</div><div class="ci-prev">${c.preview}</div></div><div style="text-align:right;flex-shrink:0;"><div class="ci-time">${c.time}</div>${c.unread?`<div class="ci-un">${c.unread}</div>`:''}</div></div>`).join('');
 }
-function filterC(v) { renderContacts(v); }
-function selContact(id) {
-  activeContact = contacts.find(c => c.id===id); activeContact.unread = 0;
-  $('cz-name').textContent = activeContact.name;
-  $('cz-status').textContent = activeContact.online ? '● Online' : '○ Offline';
-  $('cz-status').style.color = activeContact.online ? 'var(--green)' : 'var(--text-f)';
+function filterC(v){ renderContacts(v); }
+function selContact(id){
+  activeContact=contacts.find(c=>c.id===id); activeContact.unread=0;
+  document.getElementById('cz-name').textContent=activeContact.name;
+  document.getElementById('cz-status').textContent=activeContact.online?'● Online':'○ Offline';
+  document.getElementById('cz-status').style.color=activeContact.online?'var(--green)':'var(--text-f)';
+  const av=document.getElementById('cz-av'); av.innerHTML=''; av.appendChild(icon('user')); lucide.createIcons({nodes:[av]});
   renderContacts(); renderMsgs();
 }
-function renderMsgs() {
-  if (!activeContact) return;
-  const b = $('msg-body');
-  if (!activeContact.msgs.length) {
-    b.innerHTML = `<div class="empty-state"><div class="empty-title">No messages yet</div><div class="empty-sub">Start the conversation below</div></div>`;
-    return;
-  }
-  b.innerHTML = '';
-  const frag = document.createDocumentFragment();
-  activeContact.msgs.forEach(m => {
-    const d = document.createElement('div'); d.className = 'msg ' + (m.from==='me'?'user':'ai');
-    const av = document.createElement('div'); av.className = 'm-av'; av.appendChild(icon('user'));
-    const bub = document.createElement('div'); bub.className = 'm-bub';
-    if (m.isFile) {
-      const ref = document.createElement('div'); ref.className='f-ref';
-      const fIco=document.createElement('span');fIco.style.color='var(--gold)';fIco.style.fontSize='15px';fIco.appendChild(icon('paperclip'));
-      const fNm=document.createElement('span');fNm.className='f-ref-n';fNm.textContent=m.text.replace('📎 ','');
-      ref.appendChild(fIco);ref.appendChild(fNm);bub.appendChild(ref);
-    } else {
-      bub.textContent = m.text;
-    }
-    if (m.from==='me') { d.appendChild(bub); d.appendChild(av); }
-    else               { d.appendChild(av);  d.appendChild(bub); }
-    frag.appendChild(d);
+function renderMsgs(){
+  if(!activeContact) return;
+  const b=document.getElementById('msg-body');
+  if(!activeContact.msgs.length){ b.innerHTML=`<div class="empty-state"><div class="empty-title">No messages yet</div><div class="empty-sub">Start the conversation</div></div>`; return; }
+  b.innerHTML='';
+  activeContact.msgs.forEach(m=>{
+    const d=document.createElement('div'); d.className='msg '+(m.from==='me'?'user':'ai');
+    const av=document.createElement('div'); av.className='m-av'; av.appendChild(icon('user'));
+    const bub=document.createElement('div'); bub.className='m-bub'; bub.textContent=m.text;
+    if(m.from==='me'){d.appendChild(bub);d.appendChild(av);}else{d.appendChild(av);d.appendChild(bub);}
+    b.appendChild(d); lucide.createIcons({nodes:[d]});
   });
-  b.appendChild(frag);
-  lucide.createIcons({nodes:[b]});
-  b.scrollTop = b.scrollHeight;
+  b.scrollTop=b.scrollHeight;
 }
-function sendMsg() {
-  const ta = $('msg-ta'), text = ta.value.trim();
-  const hasFiles = uploads.msg.length > 0;
-  if ((!text && !hasFiles) || !activeContact) return;
-  ta.value = '';
-
-  if (hasFiles) {
-    appendFileMsgs('msg-body', uploads.msg);
-    uploads.msg.forEach(f => activeContact.msgs.push({from:'me', text:'📎 '+f.name, isFile:true}));
-    uploads.msg = []; renderChips('msg');
-  }
-  if (text) {
-    activeContact.msgs.push({from:'me', text});
-    appendMsg('msg-body', 'user', text);
-  }
+function sendMsg(){
+  const ta=document.getElementById('msg-ta'),text=ta.value.trim();
+  const hasFiles=uploads.msg.length>0;
+  if((!text&&!hasFiles)||!activeContact) return;
+  ta.value='';
+  if(hasFiles){ appendFileMsgs('msg-body',uploads.msg); uploads.msg.forEach(f=>activeContact.msgs.push({from:'me',text:'📎 '+f.name})); uploads.msg=[]; renderChips('msg'); }
+  if(text){ activeContact.msgs.push({from:'me',text}); appendMsg('msg-body','user',text); }
   msgCount++; updateStats();
-  const replies = ['Got it! 👍','Understood.','Thanks for the update.','Noted!','Will do.','File received ✓'];
-  setTimeout(() => {
-    const reply = replies[Math.floor(Math.random()*replies.length)];
-    activeContact.msgs.push({from:'them', text:reply});
-    appendMsg('msg-body', 'ai', reply);
-  }, 600 + Math.random()*500);
+  const replies=['Got it! 👍','Understood.','Thanks for the update.','Noted!','Will do.','On it ✓'];
+  setTimeout(()=>{ const r=replies[Math.floor(Math.random()*replies.length)]; activeContact.msgs.push({from:'them',text:r}); appendMsg('msg-body','ai',r); },700+Math.random()*600);
 }
-function msgKey(e) { if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } }
+function msgKey(e){ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();} }
 
-// ═══════════════════════════════════════════
-//  OLD FACE MODAL (for settings/messenger)
-// ═══════════════════════════════════════════
-function openFace(mode) {
-  faceMode = mode;
-  $('face-modal').classList.remove('hidden');
-  $('face-status').textContent = 'Initializing…';
-  loadFaceModels();
+// ── STATS & CLOCK ─────────────────────────────
+function updateStats(){
+  document.getElementById('stat-msgs').textContent=msgCount;
+  const m=Math.floor((Date.now()-sessionStart)/60000);
+  document.getElementById('stat-session').textContent=m<60?m+'m':Math.floor(m/60)+'h';
 }
-function fmStart() {
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
-    .then(s => {
-      faceStream = s;
-      $('fv').srcObject = s;
-      $('face-status').textContent = 'Look at the camera…';
-      setTimeout(detectFaceLoop, 1000);
-    })
-    .catch(() => notif('danger', 'Camera blocked', 'Please allow camera access'));
-}
-async function detectFaceLoop() {
-  if (!faceStream) return;
-  try {
-    const v = $('fv');
-    const d = await faceapi.detectSingleFace(v, new faceapi.TinyFaceDetectorOptions());
-    if (d) {
-      $('face-status').textContent = 'Face verified ✓';
-      setTimeout(() => {
-        closeFace();
-        if (faceMode === 'messenger') { msgUnlocked=true; switchPanel('msg'); notif('success','Unlocked','Messenger access granted'); }
-      }, 800);
-    } else { setTimeout(detectFaceLoop, 500); }
-  } catch(e) { setTimeout(detectFaceLoop, 500); }
-}
-function closeFace() {
-  $('face-modal').classList.add('hidden');
-  if (faceStream) { faceStream.getTracks().forEach(t => t.stop()); faceStream = null; }
-}
-
-// ═══════════════════════════════════════════
-//  STATS & CLOCK
-// ═══════════════════════════════════════════
-function updateStats() {
-  $('stat-msgs').textContent = msgCount;
-  const m = Math.floor((Date.now()-sessionStart)/60000);
-  $('stat-session').textContent = m<60 ? m+'m' : Math.floor(m/60)+'h';
-}
-setInterval(() => {
-  $('wb-time').textContent = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+setInterval(()=>{
+  document.getElementById('wb-time').textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
   updateStats();
-}, 1000);
+},1000);
 
-// Auto-resize textareas
-['ai-ta','msg-ta'].forEach(id => {
-  const el = $(id);
-  if (el) el.addEventListener('input', function() { this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,110)+'px'; }, {passive:true});
+// ── Auto-resize textareas
+['ai-ta','msg-ta'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('input',function(){ this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,110)+'px'; });
 });
 
-// ═══════════════════════════════════════════
-//  BOOT
-// ═══════════════════════════════════════════
-window.addEventListener('DOMContentLoaded', () => {
+// ── BOOT ─────────────────────────────────────
+window.addEventListener('DOMContentLoaded',()=>{
   initIcons();
-  checkExistingAccount();
+  const user = getUser();
+  if (!user) {
+    goRegister();
+  } else {
+    // Show name on lock screen
+    document.getElementById('lc-welcome-name').textContent = `Welcome back, ${user.name}. Enter your 6-digit key.`;
+    document.getElementById('sk-input').focus();
+  }
 });
-
-// Prevent context menu on right-click for app-like feel
-document.addEventListener('contextmenu', e => { if(e.target.closest('.page')) e.preventDefault(); });
 </script>
 </body>
 </html>
