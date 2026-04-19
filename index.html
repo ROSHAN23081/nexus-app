@@ -147,15 +147,20 @@ svg.lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:middle;flex-shr
 .reg-inp::placeholder{color:var(--text-f);font-weight:300;}
 
 .cam-ring{
-  width:140px;height:140px;border-radius:50%;margin:10px auto 16px;position:relative;
-  background:var(--bg-sec);border:1px solid var(--border);overflow:hidden;
+  width:200px;height:200px;border-radius:50%;margin:10px auto 16px;position:relative;
+  background:var(--bg-sec);border:2px solid var(--border);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
 }
 .cam-ring video{width:100%;height:100%;object-fit:cover;border-radius:50%;transform:scaleX(-1);}
-.cam-ring::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:var(--gold);animation:cSpin 2s linear infinite;z-index:2;}
+.cam-ring::before{content:'';position:absolute;inset:0;border-radius:50%;border:3px solid transparent;border-top-color:var(--gold);animation:cSpin 2s linear infinite;z-index:2;}
+.cam-placeholder{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:48px;color:var(--text-f);z-index:1;
+}
 @keyframes cSpin{to{transform:rotate(360deg);}}
-.cam-hint{text-align:center;font-size:12px;color:var(--text-m);margin-bottom:12px;}
+.cam-hint{text-align:center;font-size:12px;color:var(--text-m);margin-bottom:12px;min-height:18px;}
 .face-strength{display:flex;gap:4px;justify-content:center;margin-bottom:12px;}
-.fbar{width:24px;height:3px;border-radius:2px;background:var(--border);transition:background .3s;}
+.fbar{width:32px;height:4px;border-radius:2px;background:var(--border);transition:background .3s;}
 .fbar.ok{background:var(--green);}
 
 .reg-cta{
@@ -170,6 +175,13 @@ svg.lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:middle;flex-shr
 
 .reg-link{text-align:center;margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--text-m);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:color .3s;}
 .reg-link:hover{color:var(--gold);}
+
+.skip-bio{
+  text-align:center;margin-top:12px;font-family:var(--mono);font-size:9.5px;
+  color:var(--text-f);letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;transition:color .3s;padding:8px;
+}
+.skip-bio:hover{color:var(--gold);}
 
 /* ═══ LOCK SCREEN ═══ */
 #page-safekey{flex-direction:column;gap:20px;}
@@ -248,15 +260,15 @@ svg.lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:middle;flex-shr
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
 
 /* ═══ FACE VERIFY OVERLAY ═══ */
-.face-overlay{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.75);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;transition:opacity .4s;}
+.face-overlay{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.85);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;transition:opacity .4s;}
 .face-overlay.hidden{opacity:0;pointer-events:none;}
 .face-box{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r4);padding:38px 32px;width:420px;text-align:center;position:relative;overflow:hidden;}
 .face-box::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4;}
-.face-cam{width:180px;height:180px;border-radius:50%;margin:0 auto 18px;position:relative;overflow:hidden;border:1px solid var(--border);background:var(--bg-sec);}
+.face-cam{width:200px;height:200px;border-radius:50%;margin:0 auto 18px;position:relative;overflow:hidden;border:2px solid var(--border);background:var(--bg-sec);}
 .face-cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;transform:scaleX(-1);}
 .face-cam::after{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid var(--gold);opacity:.4;animation:pulseRing 2s infinite;}
 @keyframes pulseRing{0%{transform:scale(1);opacity:.4;}100%{transform:scale(1.1);opacity:0;}}
-.face-status{font-family:var(--mono);font-size:10px;color:var(--text-m);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px;}
+.face-status{font-family:var(--mono);font-size:10px;color:var(--text-m);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px;min-height:16px;}
 
 /* ═══ INTRUDER MODAL ═══ */
 .intruder-modal{background:var(--bg-alt);border:1px solid var(--red);border-radius:var(--r4);padding:36px;width:460px;max-width:92vw;text-align:center;box-shadow:0 32px 80px rgba(232,84,84,.15);position:relative;overflow:hidden;}
@@ -561,7 +573,7 @@ input,textarea,button{font-family:inherit;}
       <div class="reg-f"><div class="reg-l">Confirm Key</div><input class="reg-inp" id="reg-key2" type="password" inputmode="numeric" maxlength="6" placeholder="······"/></div>
       <div class="reg-f"><div class="reg-l">Messenger PIN (4 digits)</div><input class="reg-inp" id="reg-pin" inputmode="numeric" maxlength="4" placeholder="····"/></div>
       <div class="reg-f"><div class="reg-l">Confirm PIN</div><input class="reg-inp" id="reg-pin2" inputmode="numeric" maxlength="4" placeholder="····"/></div>
-      <div class="reg-f full"><div class="reg-l">Alert Webhook (optional)</div><input class="reg-inp" id="reg-webhook" placeholder="https://maker.ifttt.com/trigger/nexus/with/key/..."/></div>
+      <div class="reg-f full"><div class="reg-l">Alert Webhook (optional)</div><input class="reg-inp" id="reg-webhook" placeholder="https://discord.com/api/webhooks/..."/></div>
     </div>
     <button class="reg-cta" style="margin-top:18px;" onclick="regNext()"><span>Continue</span><i data-lucide="arrow-right"></i></button>
     <div class="reg-link" onclick="goExistingUser()">Existing User? Sign In</div>
@@ -576,12 +588,16 @@ input,textarea,button{font-family:inherit;}
     <div style="font-family:var(--display);font-size:18px;color:var(--text);margin:18px 0 6px;">Face Registration</div>
     <div style="font-size:12.5px;color:var(--text-b);margin-bottom:14px;">Center your face. Ensure good lighting. This binds your biometric signature to this account.</div>
 
-    <div class="cam-ring"><video id="reg-video" autoplay muted playsinline></video></div>
-    <div class="cam-hint" id="reg-cam-hint">Camera inactive</div>
+    <div class="cam-ring" id="reg-cam-ring">
+      <div class="cam-placeholder" id="reg-cam-placeholder"><i data-lucide="scan-face"></i></div>
+      <video id="reg-video" autoplay muted playsinline style="display:none;"></video>
+    </div>
+    <div class="cam-hint" id="reg-cam-hint">Click Start Camera to begin</div>
     <div class="face-strength" id="face-bars"><div class="fbar"></div><div class="fbar"></div><div class="fbar"></div><div class="fbar"></div></div>
 
     <button class="reg-cta" id="reg-scan-btn" onclick="startRegScan()"><i data-lucide="scan-face"></i><span>Start Camera & Scan</span></button>
     <button class="reg-cta hidden" id="reg-submit-btn" onclick="submitRegistration()"><i data-lucide="check"></i><span>Complete Enrollment</span></button>
+    <div class="skip-bio" id="skip-bio-btn" onclick="skipBiometric()">Skip Biometric (Less Secure)</div>
     <button class="m-cancel" style="margin-top:10px;" onclick="regBack()">Back</button>
   </div>
 </div>
@@ -623,7 +639,10 @@ input,textarea,button{font-family:inherit;}
   <div class="face-box">
     <div style="font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.02em;margin-bottom:5px;color:var(--text);">Biometric Verification</div>
     <div style="font-size:13px;color:var(--text-b);margin-bottom:18px;">Confirming your identity…</div>
-    <div class="face-cam"><video id="fv-verify" autoplay muted playsinline></video></div>
+    <div class="face-cam" id="verify-cam-container">
+      <div class="cam-placeholder" id="verify-placeholder" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:48px;color:var(--text-f);"><i data-lucide="scan-face"></i></div>
+      <video id="fv-verify" autoplay muted playsinline style="display:none;"></video>
+    </div>
     <div class="face-status" id="fv-status">Initializing camera…</div>
     <button class="m-cancel" onclick="cancelFaceVerify()">Cancel</button>
   </div>
@@ -800,7 +819,7 @@ input,textarea,button{font-family:inherit;}
 
       <!-- MESSENGER PANEL -->
       <div class="panel hidden" id="p-msg" style="flex-direction:row;">
-        <div class="cp">
+        div class="cp">
           <div class="cp-head">
             <div class="cp-title">Messages</div>
             <input class="cp-search" type="text" placeholder="Search contacts…" oninput="filterC(this.value)">
@@ -896,10 +915,11 @@ let isListening = false, recognition = null;
 let aiHistory = [], msgUnlocked = false, pinBuf = '';
 let userLoc = null, msgCount = 0, sessionStart = Date.now();
 const uploads = { ai:[], msg:[] };
-let currentFaceDescriptor = null; // Float32Array during registration
-let storedUser = null;            // Parsed from localStorage
-let aiController = null;          // AbortController for streaming
-let sessionToken = 0;             // Simple session nonce
+let currentFaceDescriptor = null;
+let storedUser = null;
+let aiController = null;
+let sessionToken = 0;
+let regStream = null, verifyStream = null;
 
 // Performance: cache DOM refs
 const $ = id => document.getElementById(id);
@@ -987,9 +1007,13 @@ async function loadFaceModels() {
 
 // Get descriptor from video element
 async function getFaceDescriptor(videoEl) {
-  const detection = await faceapi.detectSingleFace(videoEl, new faceapi.TinyFaceDetectorOptions({ inputSize:320, scoreThreshold:.5 }))
-    .withFaceLandmarks().withFaceDescriptor();
-  return detection ? detection.descriptor : null;
+  try {
+    const detection = await faceapi.detectSingleFace(videoEl, new faceapi.TinyFaceDetectorOptions({ inputSize:320, scoreThreshold:.5 }))
+      .withFaceLandmarks().withFaceDescriptor();
+    return detection ? detection.descriptor : null;
+  } catch(e) {
+    return null;
+  }
 }
 
 // Compare two descriptors (stored vs current)
@@ -1026,67 +1050,123 @@ function regNext() {
   if (!/^\d{4}$/.test(pin)) { notif('warning','Invalid PIN','Messenger PIN must be exactly 4 digits'); return; }
   if (pin !== pin2) { notif('warning','PIN Mismatch','PINs do not match'); return; }
 
-  // Proceed to face scan
   $('reg-card-step1').classList.add('hidden');
   $('reg-card-step2').classList.remove('hidden');
-  $('reg-cam-hint').textContent = 'Click Start Camera & Scan to begin';
+  $('reg-cam-hint').textContent = 'Click "Start Camera & Scan" to begin';
 }
 
 function regBack() {
+  stopRegCam();
   $('reg-card-step2').classList.add('hidden');
   $('reg-card-step1').classList.remove('hidden');
-  stopRegCam();
 }
 
-let regStream = null;
+function skipBiometric() {
+  if (!confirm('Warning: Skipping biometric enrollment reduces security. Anyone with your Safe Key can access your account. Continue?')) return;
+  
+  const name = $('reg-name').value.trim();
+  const key = $('reg-key').value.trim();
+  const pin = $('reg-pin').value.trim();
+  const webhook = $('reg-webhook').value.trim();
+
+  const account = {
+    name, key, pin, webhook,
+    faceDescriptor: null,
+    biometricSkipped: true,
+    createdAt: Date.now()
+  };
+  localStorage.setItem('nexus_account', JSON.stringify(account));
+  storedUser = account;
+
+  notif('info','Enrollment Complete','Biometric skipped. Account created with key-only security.');
+  goPage('safekey');
+}
+
 async function startRegScan() {
   const ready = await loadFaceModels();
-  if (!ready) { notif('danger','Biometrics Unavailable','Could not load face models'); return; }
+  if (!ready) { 
+    notif('danger','Biometrics Unavailable','Could not load face models. You can skip this step.'); 
+    return; 
+  }
 
   try {
-    regStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode:'user', width:320, height:320 } });
+    $('reg-cam-hint').textContent = 'Requesting camera access...';
+    
+    regStream = await navigator.mediaDevices.getUserMedia({ 
+      video: { 
+        facingMode: 'user',
+        width: { ideal: 640 },
+        height: { ideal: 480 }
+      } 
+    });
+    
     const vid = $('reg-video');
     vid.srcObject = regStream;
+    vid.style.display = 'block';
+    $('reg-cam-placeholder').style.display = 'none';
+    
     await vid.play();
 
     $('reg-cam-hint').textContent = 'Look at the camera. Hold still…';
     $('reg-scan-btn').classList.add('hidden');
     updateFaceBars(1);
 
-    // Capture loop
     let attempts = 0;
+    let faceDetected = false;
+    
     const iv = setInterval(async () => {
       attempts++;
       const d = await getFaceDescriptor(vid);
+      
       if (d) {
+        faceDetected = true;
         const quality = Math.min(attempts / 3, 1);
         updateFaceBars(Math.ceil(quality * 4));
+        $('reg-cam-hint').textContent = 'Face detected! Hold steady…';
+      } else if (faceDetected) {
+        $('reg-cam-hint').textContent = 'Face lost. Look at camera…';
+      } else {
+        $('reg-cam-hint').textContent = `Scanning${'.'.repeat(attempts % 4)}`;
       }
+
       if (attempts >= 5 && d) {
         clearInterval(iv);
         currentFaceDescriptor = d;
-        $('reg-cam-hint').textContent = 'Face captured successfully';
+        $('reg-cam-hint').textContent = '✓ Face captured successfully';
         $('reg-cam-hint').style.color = 'var(--green)';
         updateFaceBars(4);
         stopRegCam();
         $('reg-submit-btn').classList.remove('hidden');
-      } else if (attempts > 12) {
+        $('skip-bio-btn').style.display = 'none';
+      } else if (attempts > 20) {
         clearInterval(iv);
-        $('reg-cam-hint').textContent = 'Could not detect face. Try again.';
+        $('reg-cam-hint').textContent = 'Could not detect face. Try again or skip.';
+        $('reg-cam-hint').style.color = 'var(--red)';
         $('reg-scan-btn').classList.remove('hidden');
+        $('reg-scan-btn').innerHTML = '<span>Retry Scan</span>';
       }
     }, 600);
   } catch(e) {
-    notif('danger','Camera Error','Allow camera access to register biometrics');
+    console.error('Camera error:', e);
+    $('reg-cam-hint').textContent = 'Camera blocked or unavailable. Check permissions.';
+    $('reg-cam-hint').style.color = 'var(--red)';
+    notif('danger','Camera Error','Allow camera access in browser settings, or skip biometric.');
   }
 }
 
 function updateFaceBars(n) {
-  $$('.fbar').forEach((b,i) => b.classList.toggle('ok', i < n));
+  $$('#face-bars .fbar').forEach((b,i) => b.classList.toggle('ok', i < n));
 }
 
 function stopRegCam() {
-  if (regStream) { regStream.getTracks().forEach(t => t.stop()); regStream = null; }
+  if (regStream) { 
+    regStream.getTracks().forEach(t => t.stop()); 
+    regStream = null; 
+  }
+  const vid = $('reg-video');
+  if (vid) { vid.srcObject = null; vid.style.display = 'none'; }
+  const placeholder = $('reg-cam-placeholder');
+  if (placeholder) placeholder.style.display = 'flex';
 }
 
 function submitRegistration() {
@@ -1097,7 +1177,8 @@ function submitRegistration() {
 
   const account = {
     name, key, pin, webhook,
-    faceDescriptor: Array.from(currentFaceDescriptor),
+    faceDescriptor: currentFaceDescriptor ? Array.from(currentFaceDescriptor) : null,
+    biometricSkipped: !currentFaceDescriptor,
     createdAt: Date.now()
   };
   localStorage.setItem('nexus_account', JSON.stringify(account));
@@ -1137,8 +1218,12 @@ function verifyKey() {
 
   if (key === acc.key) {
     err.textContent = '';
-    // Proceed to Face Verification (Step 2)
-    startFaceVerify();
+    if (acc.faceDescriptor && !acc.biometricSkipped) {
+      startFaceVerify();
+    } else {
+      loginSuccess();
+      notif('info','Logged In','Biometric verification skipped for this account');
+    }
   } else {
     err.textContent = 'Authentication failed — access denied';
     err.classList.add('shake');
@@ -1149,61 +1234,98 @@ function verifyKey() {
 }
 
 // ── Face Verification (Login Step 2)
-let verifyStream = null;
 async function startFaceVerify() {
   const ready = await loadFaceModels();
-  if (!ready) { notif('danger','Biometrics Failed','Face models unavailable'); return; }
+  if (!ready) { 
+    notif('warning','Biometrics Failed','Face models unavailable. Logging in with key only.');
+    loginSuccess();
+    return; 
+  }
 
   $('face-verify-overlay').classList.remove('hidden');
   $('fv-status').textContent = 'Initializing camera…';
 
   try {
-    verifyStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode:'user', width:400, height:400 } });
+    verifyStream = await navigator.mediaDevices.getUserMedia({ 
+      video: { 
+        facingMode: 'user',
+        width: { ideal: 640 },
+        height: { ideal: 480 }
+      } 
+    });
+    
     const vid = $('fv-verify');
     vid.srcObject = verifyStream;
+    vid.style.display = 'block';
+    $('verify-placeholder').style.display = 'none';
+    
     await vid.play();
 
-    $('fv-status').textContent = 'Scanning face… Look at the camera';
-
-    // Attempt verification over 3 seconds
+    $('fv-status').textContent = 'Look at the camera…';
+    
+    const acc = getAccount();
+    if (!acc || !acc.faceDescriptor) {
+      cancelFaceVerify();
+      loginSuccess();
+      return;
+    }
+    
+    const storedDesc = new Float32Array(acc.faceDescriptor);
     let bestDist = 1;
     let attempts = 0;
-    const storedDesc = new Float32Array(acc.faceDescriptor);
-    const acc = getAccount();
+    let faceFound = false;
 
     const iv = setInterval(async () => {
       attempts++;
       const curr = await getFaceDescriptor(vid);
+      
       if (curr) {
+        faceFound = true;
         const dist = compareFaces(storedDesc, curr);
         if (dist < bestDist) bestDist = dist;
-        $('fv-status').textContent = `Scanning… match ${Math.round((1-dist)*100)}%`;
+        const matchPct = Math.round((1 - dist) * 100);
+        $('fv-status').textContent = `Match: ${matchPct}%`;
+      } else if (faceFound) {
+        $('fv-status').textContent = 'Face lost. Look at camera…';
+      } else {
+        $('fv-status').textContent = `Scanning${'.'.repeat(attempts % 4)}`;
       }
 
-      if (attempts >= 8) {
+      if (attempts >= 15) {
         clearInterval(iv);
         stopVerifyCam();
         $('face-verify-overlay').classList.add('hidden');
 
         if (bestDist < 0.55) {
-          // MATCH
           loginSuccess();
           notif('success','Face Verified',`Welcome back, ${acc.name}`);
         } else {
-          // INTRUDER
           triggerIntruder(vid, bestDist);
         }
       }
-    }, 450);
+    }, 400);
   } catch(e) {
-    $('fv-status').textContent = 'Camera blocked';
-    notif('danger','Camera Error','Allow camera to verify identity');
+    console.error('Camera error:', e);
+    $('fv-status').textContent = 'Camera blocked or unavailable';
+    notif('warning','Camera Error','Using key-only login. Check camera permissions.');
+    setTimeout(() => {
+      cancelFaceVerify();
+      loginSuccess();
+    }, 1500);
   }
 }
 
 function stopVerifyCam() {
-  if (verifyStream) { verifyStream.getTracks().forEach(t => t.stop()); verifyStream = null; }
+  if (verifyStream) { 
+    verifyStream.getTracks().forEach(t => t.stop()); 
+    verifyStream = null; 
+  }
+  const vid = $('fv-verify');
+  if (vid) { vid.srcObject = null; vid.style.display = 'none'; }
+  const placeholder = $('verify-placeholder');
+  if (placeholder) placeholder.style.display = 'flex';
 }
+
 function cancelFaceVerify() {
   stopVerifyCam();
   $('face-verify-overlay').classList.add('hidden');
@@ -1211,59 +1333,78 @@ function cancelFaceVerify() {
 
 // ── Intruder Handler
 async function triggerIntruder(videoEl, distance) {
-  // Capture image
-  const canvas = document.createElement('canvas');
-  canvas.width = 320; canvas.height = 240;
-  const ctx = canvas.getContext('2d');
-  ctx.translate(canvas.width, 0);
-  ctx.scale(-1, 1); // mirror
-  ctx.drawImage(videoEl, 0, 0, canvas.width, canvas.height);
-  const imgData = canvas.toDataURL('image/jpeg', 0.6);
+  let imgData = null;
+  
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.width = 320; canvas.height = 240;
+    const ctx = canvas.getContext('2d');
+    ctx.translate(canvas.width, 0);
+    ctx.scale(-1, 1);
+    ctx.drawImage(videoEl, 0, 0, canvas.width, canvas.height);
+    imgData = canvas.toDataURL('image/jpeg', 0.6);
+  } catch(e) {
+    imgData = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+  }
 
   const event = {
     time: new Date().toISOString(),
     location: userLoc ? `${userLoc.city}, ${userLoc.country}` : 'Unknown',
     ip: userLoc ? userLoc.ip : 'Unknown',
-    distance: distance.toFixed(3),
+    distance: distance ? distance.toFixed(3) : 'N/A',
     image: imgData
   };
 
-  // Save to security log (max 5 events)
   let log = JSON.parse(localStorage.getItem('nexus_sec_log') || '[]');
   log.unshift(event);
   if (log.length > 5) log = log.slice(0, 5);
   localStorage.setItem('nexus_sec_log', JSON.stringify(log));
 
-  // Send webhook alert if configured
   const acc = getAccount();
   if (acc && acc.webhook) {
     sendWebhookAlert(acc.webhook, event).catch(()=>{});
   }
 
-  // Show intruder modal
   $('intruder-img').src = imgData;
   $('intruder-meta').textContent = `${event.location} · ${new Date(event.time).toLocaleString()}`;
   $('intruder-overlay').classList.remove('hidden');
 
-  // Browser notification
   if ('Notification' in window && Notification.permission === 'granted') {
-    new Notification('NEXUS Security Alert', { body: 'Unauthorized access attempt detected on your account', icon: imgData });
-  } else if ('Notification' in window) {
-    Notification.requestPermission().then(p => { if(p==='granted') new Notification('NEXUS Security Alert'); });
+    new Notification('NEXUS Security Alert', { body: 'Unauthorized access attempt detected' });
+  } else if ('Notification' in window && Notification.permission !== 'denied') {
+    Notification.requestPermission().then(p => { 
+      if(p==='granted') new Notification('NEXUS Security Alert'); 
+    });
   }
 
   notif('danger','Intruder Alert','Unauthorized biometric mismatch detected');
 }
 
 async function sendWebhookAlert(url, event) {
-  const payload = {
-    text: `🚨 NEXUS INTRUDER ALERT 🚨\nTime: ${event.time}\nLocation: ${event.location}\nMatch: ${event.distance}\nIP: ${event.ip}`
-  };
-  await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type':'application/json' },
-    body: JSON.stringify(payload)
-  });
+  try {
+    const payload = {
+      content: '🚨 **NEXUS INTRUDER ALERT** 🚨',
+      embeds: [{
+        title: 'Unauthorized Access Attempt',
+        description: 'Biometric mismatch detected',
+        color: 15158332,
+        fields: [
+          { name: 'Time', value: new Date(event.time).toLocaleString(), inline: true },
+          { name: 'Location', value: event.location, inline: true },
+          { name: 'Match Score', value: event.distance, inline: true }
+        ],
+        timestamp: event.time
+      }]
+    };
+    
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {
+    console.error('Webhook failed:', e);
+  }
 }
 
 function closeIntruder() {
@@ -1293,7 +1434,6 @@ function loginSuccess() {
   detectLocation();
   updateStats();
 
-  // Check for past intruders
   const log = JSON.parse(localStorage.getItem('nexus_sec_log') || '[]');
   if (log.length > 0) {
     notif('warning','Security Events',`${log.length} intrusion attempt(s) recorded. Check Security Log.`);
@@ -1303,11 +1443,13 @@ function loginSuccess() {
 function forgotFlow() {
   notif('info','Recovery','Contact your system administrator or reset account below');
 }
+
 function resetAccount() {
   if (confirm('WARNING: This wipes ALL data including biometrics. Proceed?')) {
     localStorage.removeItem('nexus_account');
     localStorage.removeItem('nexus_sec_log');
     storedUser = null;
+    currentFaceDescriptor = null;
     notif('success','Reset','All account data cleared');
     goPage('register');
   }
@@ -1346,6 +1488,7 @@ function showSecurityLog() {
   switchPanel('sec');
   renderSecLog();
 }
+
 function renderSecLog() {
   const body = $('sec-body');
   const log = JSON.parse(localStorage.getItem('nexus_sec_log') || '[]');
@@ -1358,7 +1501,7 @@ function renderSecLog() {
   log.forEach(ev => {
     html += `
     <div class="sec-log-item">
-      <img class="sec-log-img" src="${ev.image}" alt="intruder"/>
+      <img class="sec-log-img" src="${ev.image}" alt="intruder" onerror="this.style.display='none'"/>
       <div class="sec-log-info">
         <div class="sec-log-title">Unauthorized Attempt</div>
         <div class="sec-log-meta">${new Date(ev.time).toLocaleString()} · ${ev.location} · Match: ${ev.distance}</div>
@@ -1366,6 +1509,7 @@ function renderSecLog() {
     </div>`;
   });
   body.innerHTML = html;
+  lucide.createIcons({nodes:[body]});
 }
 
 // ── PIN & Messenger
@@ -1484,16 +1628,13 @@ async function sendAI() {
 
   const fileCtx = await readTextFiles('ai');
   const fullContent = fileCtx ? (fileCtx + (text ? '\n\nUser question: ' + text : '')) : (text || '[File uploaded]');
-  const filesSnap = [...uploads.ai];
   uploads.ai = []; renderChips('ai');
 
-  // Prune history to last 10 exchanges for performance
   if (aiHistory.length > 20) aiHistory = aiHistory.slice(-20);
   aiHistory.push({ role: 'user', content: fullContent });
 
   msgCount++; updateStats();
 
-  // Create streaming bubble
   const b = $('ai-body');
   const d = document.createElement('div'); d.className = 'msg ai'; d.id = 'streaming-msg';
   const av = document.createElement('div'); av.className = 'm-av'; av.appendChild(icon('bot'));
@@ -1521,7 +1662,6 @@ async function sendAI() {
       fullResponse += chunk;
       bub.textContent = fullResponse;
       b.scrollTop = b.scrollHeight;
-      // Yield to main thread for smooth UI
       await new Promise(r => requestAnimationFrame(r));
     }
 
@@ -1713,8 +1853,7 @@ async function detectFaceLoop() {
       $('face-status').textContent = 'Face verified ✓';
       setTimeout(() => {
         closeFace();
-        if (faceMode === 'unlock') { /* handled by new flow */ }
-        else if (faceMode === 'messenger') { msgUnlocked=true; switchPanel('msg'); notif('success','Unlocked','Messenger access granted'); }
+        if (faceMode === 'messenger') { msgUnlocked=true; switchPanel('msg'); notif('success','Unlocked','Messenger access granted'); }
       }, 800);
     } else { setTimeout(detectFaceLoop, 500); }
   } catch(e) { setTimeout(detectFaceLoop, 500); }
