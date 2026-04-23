@@ -393,6 +393,7 @@ input,textarea,button,select{font-family:inherit;}
 .empty-title{font-family:var(--display);font-size:15px;color:var(--text-m);margin-bottom:5px;}
 .empty-sub{font-size:12.5px;color:var(--text-f);}
 
+@keyframes cSpin{to{transform:rotate(360deg)}}
 @media(max-width:768px){.shell{grid-template-columns:1fr;padding:8px;}.sb{display:none;}.grid-2,.grid-3{grid-template-columns:1fr;}}
 </style>
 <template id="__bundler_thumbnail">
@@ -463,6 +464,21 @@ input,textarea,button,select{font-family:inherit;}
   </div>
 </div>
 
+<!-- FACE VERIFY OVERLAY -->
+<div id="fv-overlay" style="position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.88);backdrop-filter:blur(24px);display:flex;align-items:center;justify-content:center;transition:opacity .4s;opacity:0;pointer-events:none;">
+  <div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r5);padding:38px;width:360px;text-align:center;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5;"></div>
+    <div style="font-family:var(--display);font-size:19px;font-weight:600;color:var(--text);margin-bottom:5px;">Face Verification</div>
+    <div style="font-size:13px;color:var(--text-m);margin-bottom:16px;">Confirming your identity…</div>
+    <div style="width:180px;height:180px;border-radius:50%;margin:0 auto 16px;position:relative;overflow:hidden;border:2px solid var(--border);background:var(--bg-sec);">
+      <div style="position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:var(--gold);border-right-color:var(--gold);animation:cSpin 1.8s linear infinite;z-index:4;"></div>
+      <video id="fv-video" autoplay muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;z-index:2;transform:scaleX(-1);"></video>
+    </div>
+    <div id="fv-status" style="font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px;color:var(--text-m);min-height:14px;">Starting camera…</div>
+    <button onclick="cancelFaceVerify()" style="width:100%;padding:11px;border:1px solid var(--border);border-radius:var(--r2);background:transparent;color:var(--text-m);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .25s;">Cancel</button>
+  </div>
+</div>
+
 <!-- REGISTRATION -->
 <div class="page out" id="page-register">
   <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
@@ -471,7 +487,7 @@ input,textarea,button,select{font-family:inherit;}
       <div class="lc-mark">N</div>
       <div><div class="lc-name">NEXUS</div><div class="lc-sub">New Account Setup</div></div>
     </div>
-    <div class="reg-progress"><div class="rp-step active" id="rp0"></div><div class="rp-step" id="rp1"></div><div class="rp-step" id="rp2"></div><div class="rp-step" id="rp3"></div></div>
+    <div class="reg-progress"><div class="rp-step active" id="rp0"></div><div class="rp-step" id="rp1"></div><div class="rp-step" id="rp2"></div><div class="rp-step" id="rp3"></div><div class="rp-step" id="rp4"></div></div>
     <div class="rs active" id="rs-0">
       <div class="rs-title">Create your <em>profile</em></div>
       <div class="rs-sub">Your identity inside the terminal.</div>
@@ -506,10 +522,22 @@ input,textarea,button,select{font-family:inherit;}
       <div class="r-error" id="re-2"></div>
     </div>
     <div class="rs" id="rs-3">
+      <div class="rs-title">Enroll <em>Face ID</em></div>
+      <div class="rs-sub">Your face as the final security lock.</div>
+      <div style="width:160px;height:160px;border-radius:50%;margin:0 auto 12px;position:relative;overflow:hidden;border:2px solid var(--border);background:var(--bg-sec);">
+        <div style="position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:var(--gold);border-right-color:var(--gold);animation:cSpin 1.8s linear infinite;z-index:4;"></div>
+        <video id="fe-video" autoplay muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;z-index:2;transform:scaleX(-1);"></video>
+      </div>
+      <div id="fe-status" style="font-family:var(--mono);font-size:9.5px;color:var(--text-m);letter-spacing:.16em;text-transform:uppercase;text-align:center;margin-bottom:14px;min-height:14px;">Click Start Camera to begin</div>
+      <div class="r-error" id="re-3"></div>
+      <button class="r-btn" id="fe-btn" onclick="feAction()"><span id="rb-3-ico"></span>&nbsp;<span id="fe-btn-lbl">Start Camera</span></button>
+      <button class="r-btn sec" onclick="skipFace()" style="margin-top:8px;">Skip for now</button>
+    </div>
+    <div class="rs" id="rs-4">
       <div class="done-circle" id="done-ico"></div>
       <div class="rs-title" style="text-align:center;">Welcome to <em>NEXUS</em></div>
       <div class="rs-sub" style="text-align:center;margin-bottom:0;">Your terminal is secured.</div>
-      <button class="r-btn" onclick="regComplete()" style="margin-top:20px;"><span id="rb-3-ico"></span>&nbsp;Enter Terminal</button>
+      <button class="r-btn" onclick="regComplete()" style="margin-top:20px;"><span id="rb-4-ico"></span>&nbsp;Enter Terminal</button>
     </div>
   </div>
 </div>
@@ -1099,6 +1127,163 @@ function toggleTheme() {
 }
 
 // ══════════════════════════════════════════════
+//  FACE ID — ENROLL + VERIFY + INTRUDER CAPTURE
+// ══════════════════════════════════════════════
+let faceapi = null, faceModelsLoaded = false;
+let faceEnrollStream = null, faceVerifyStream = null;
+let feState = 'idle';
+
+async function loadFaceModels() {
+  if(faceModelsLoaded) return;
+  if(!faceapi) {
+    const m = await import('https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.12/dist/face-api.esm.js');
+    faceapi = m; window.faceapi = m;
+  }
+  const U = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.12/model';
+  await Promise.all([
+    faceapi.nets.tinyFaceDetector.loadFromUri(U),
+    faceapi.nets.faceLandmark68Net.loadFromUri(U),
+    faceapi.nets.faceRecognitionNet.loadFromUri(U)
+  ]);
+  faceModelsLoaded = true;
+}
+
+async function captureDescriptor(videoId) {
+  const v = document.getElementById(videoId);
+  for(let i=0; i<22; i++) {
+    const d = await faceapi
+      .detectSingleFace(v, new faceapi.TinyFaceDetectorOptions({scoreThreshold:.4}))
+      .withFaceLandmarks().withFaceDescriptor();
+    if(d) return d.descriptor;
+    await new Promise(r=>setTimeout(r,300));
+  }
+  return null;
+}
+
+function euclidDist(a, b) {
+  let s=0; for(let i=0;i<a.length;i++) s+=(a[i]-b[i])**2; return Math.sqrt(s);
+}
+
+// ── ENROLLMENT
+async function feAction() {
+  if(feState==='idle') {
+    feState='started';
+    document.getElementById('fe-btn-lbl').textContent='Loading…';
+    setIcon('rb-3-ico','loader');
+    try {
+      await loadFaceModels();
+      const s = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:320,height:240}});
+      faceEnrollStream = s;
+      const v = document.getElementById('fe-video');
+      v.srcObject = s; await new Promise(r=>{v.onloadeddata=r;});
+      document.getElementById('fe-status').textContent='Center your face and click Capture';
+      document.getElementById('fe-btn-lbl').textContent='Capture Face';
+      setIcon('rb-3-ico','camera');
+      feState='ready';
+    } catch(e) {
+      document.getElementById('fe-status').textContent='Camera unavailable';
+      document.getElementById('fe-btn-lbl').textContent='Retry';
+      setIcon('rb-3-ico','camera-off');
+      feState='idle';
+    }
+  } else if(feState==='ready') {
+    feState='capturing';
+    document.getElementById('fe-btn-lbl').textContent='Scanning…';
+    try {
+      const desc = await captureDescriptor('fe-video');
+      if(!desc) throw new Error('No face detected');
+      faceEnrollStream?.getTracks().forEach(t=>t.stop()); faceEnrollStream=null;
+      feState='done';
+      document.getElementById('fe-status').innerHTML='<span style="color:var(--green)">✓ Face enrolled successfully</span>';
+      document.getElementById('fe-btn-lbl').textContent='Continue';
+      setIcon('rb-3-ico','arrow-right');
+      regData.faceDescriptor = Array.from(desc);
+    } catch(e) {
+      document.getElementById('fe-status').textContent='No face detected — try again';
+      document.getElementById('fe-btn-lbl').textContent='Try Again';
+      setIcon('rb-3-ico','camera');
+      feState='ready';
+    }
+  } else if(feState==='done') {
+    showRegStep(4);
+  }
+}
+
+function skipFace() {
+  faceEnrollStream?.getTracks().forEach(t=>t.stop()); faceEnrollStream=null;
+  regData.faceDescriptor = null;
+  showRegStep(4);
+}
+
+// ── VERIFICATION ON LOGIN
+async function startFaceVerify() {
+  const overlay = document.getElementById('fv-overlay');
+  overlay.style.opacity='1'; overlay.style.pointerEvents='auto';
+  document.getElementById('fv-status').textContent='Loading models…';
+  try {
+    await loadFaceModels();
+    const s = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:320,height:240}});
+    faceVerifyStream = s;
+    const v = document.getElementById('fv-video');
+    v.srcObject = s; await new Promise(r=>{v.onloadeddata=r;});
+    document.getElementById('fv-status').textContent='Look at the camera…';
+    verifyFaceLoop();
+  } catch(e) {
+    document.getElementById('fv-status').textContent='Camera error — logging in anyway…';
+    setTimeout(()=>{ cleanupVerify(); doLogin(); }, 1500);
+  }
+}
+
+async function verifyFaceLoop() {
+  const user = getUser();
+  if(!user?.faceDescriptor) { cleanupVerify(); doLogin(); return; }
+  try {
+    const desc = await captureDescriptor('fv-video');
+    if(!desc) { document.getElementById('fv-status').textContent='No face — move closer…'; setTimeout(verifyFaceLoop,800); return; }
+    const dist = euclidDist(desc, new Float32Array(user.faceDescriptor));
+    if(dist < 0.55) {
+      document.getElementById('fv-status').innerHTML='<span style="color:var(--green)">✓ Identity confirmed</span>';
+      setTimeout(()=>{ cleanupVerify(); doLogin(); }, 600);
+    } else {
+      // Intruder!
+      await captureIntruderPhoto();
+      cleanupVerify();
+      const err = document.getElementById('sk-error');
+      err.textContent='Biometric mismatch — access denied';
+      err.classList.add('shake'); setTimeout(()=>err.classList.remove('shake'),450);
+      document.getElementById('sk-input').value='';
+    }
+  } catch(e) { cleanupVerify(); doLogin(); }
+}
+
+function cleanupVerify() {
+  faceVerifyStream?.getTracks().forEach(t=>t.stop()); faceVerifyStream=null;
+  const overlay = document.getElementById('fv-overlay');
+  overlay.style.opacity='0'; overlay.style.pointerEvents='none';
+}
+
+function cancelFaceVerify() { cleanupVerify(); document.getElementById('sk-input').value=''; }
+
+// ── INTRUDER PHOTO CAPTURE
+async function captureIntruderPhoto() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:320,height:240}});
+    const video = document.createElement('video');
+    video.srcObject=stream; video.muted=true; video.playsInline=true; await video.play();
+    await new Promise(r=>setTimeout(r,800));
+    const canvas = document.createElement('canvas'); canvas.width=320; canvas.height=240;
+    canvas.getContext('2d').drawImage(video,0,0);
+    stream.getTracks().forEach(t=>t.stop());
+    const photo = canvas.toDataURL('image/jpeg',0.7);
+    // Store in localStorage as evidence
+    const alerts = JSON.parse(localStorage.getItem('nexus_intruder_alerts')||'[]');
+    alerts.push({time:Date.now(),photo});
+    localStorage.setItem('nexus_intruder_alerts', JSON.stringify(alerts.slice(-5)));
+    notif('danger','Intruder Alert!','Unauthorized access attempt — photo captured');
+  } catch(e) { /* camera denied */ }
+}
+
+// ══════════════════════════════════════════════
 //  ICONS
 // ══════════════════════════════════════════════
 function icon(name) {
@@ -1217,7 +1402,7 @@ function initIcons() {
     lucide.createIcons({nodes:[el]});
   });
   // reg icons
-  [['rb-0-ico','arrow-right'],['rb-1-ico','key-round'],['rb-3-ico','log-in']].forEach(([id,ic])=>setIcon(id,ic));
+  [['rb-0-ico','arrow-right'],['rb-1-ico','key-round'],['rb-3-ico','camera'],['rb-4-ico','log-in']].forEach(([id,ic])=>setIcon(id,ic));
 }
 
 // ══════════════════════════════════════════════
@@ -1254,9 +1439,11 @@ function verifyKey() {
     err.classList.add('shake');
     setTimeout(()=>err.classList.remove('shake'), 450);
     document.getElementById('sk-input').value='';
+    captureIntruderPhoto();
     return;
   }
-  doLogin();
+  if(user.faceDescriptor) { err.textContent=''; startFaceVerify(); }
+  else doLogin();
 }
 
 // ══════════════════════════════════════════════
@@ -1308,6 +1495,7 @@ function showRegStep(n) {
     el.classList.toggle('done',i<n); el.classList.toggle('active',i===n);
   });
   regStep=n;
+  if(n===3) feState='idle'; // reset face state when entering face step
 }
 function regNext() {
   if(regStep===0) {
@@ -1331,7 +1519,7 @@ function regPinP(n) {
 function regPinDel() { regPinBuf=regPinBuf.slice(0,-1); updateRegPinDots(); }
 function updateRegPinDots() { for(let i=0;i<4;i++) document.getElementById('rpd'+i).classList.toggle('on',i<regPinBuf.length); }
 function regComplete() {
-  saveUser({name:regData.name,username:regData.username,key:regData.key,pin:regData.pin||'1234',createdAt:Date.now()});
+  saveUser({name:regData.name,username:regData.username,key:regData.key,pin:regData.pin||'1234',faceDescriptor:regData.faceDescriptor||null,createdAt:Date.now()});
   // Seed chats
   localStorage.setItem(CHATS_KEY, JSON.stringify(SEED_CHATS));
   doLogin();
@@ -2056,3 +2244,4 @@ async function downloadImage() {
 </script>
 </body>
 </html>
+
