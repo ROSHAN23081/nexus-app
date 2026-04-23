@@ -1165,8 +1165,8 @@ async function callClaude(prompt) {
       'anthropic-dangerous-direct-browser-access': 'true'
     },
     body: JSON.stringify({
-      model: 'claude-haiku-4-5',
-      max_tokens: 512,
+      model: 'claude-sonnet-4-5',
+      max_tokens: 1024,
       messages: [{ role: 'user', content: prompt }]
     })
   });
@@ -1906,9 +1906,9 @@ function speakResponse(text) {
 // ══════════════════════════════════════════════
 function buildSystemPrompt() {
   const personas = {
-    en: `You are ${robotName}, a sophisticated chrome humanoid AI assistant embedded in the NEXUS private terminal. You have a calm, intelligent, professional voice. Respond in exactly 2-3 concise English sentences. Be helpful and direct. No markdown, no lists, no asterisks. Speak naturally as if talking out loud.`,
-    te: `మీరు ${robotName}, NEXUS టెర్మినల్‌లో ఒక స్మార్ట్ AI. 2-3 సంక్షిప్త తెలుగు వాక్యాలలో మాట్లాడండి. సహజంగా, స్నేహపూర్వకంగా ఉండండి.`,
-    hi: `आप ${robotName} हैं, NEXUS टर्मिनल में एक बुद्धिमान AI। 2-3 संक्षिप्त हिंदी वाक्यों में उत्तर दें। स्वाभाविक और सहायक रहें।`,
+    en: `You are ${robotName}, a sophisticated chrome humanoid AI assistant in the NEXUS private terminal. You are powered by Claude Sonnet — a highly capable, up-to-date AI model. Respond in 2-3 concise English sentences. Be helpful, intelligent and direct. If asked about very recent news or events after your knowledge cutoff, honestly say you may not have the latest data and suggest checking a live source. No markdown, no asterisks. Speak naturally as if talking out loud.`,
+    te: `మీరు ${robotName}, NEXUS టెర్మినల్‌లో Claude Sonnet AI. 2-3 సంక్షిప్త తెలుగు వాక్యాలలో సమాధానం ఇవ్వండి. చాలా తాజా వార్తలు అడిగితే, మీకు తెలియకపోవచ్చని చెప్పండి. సహజంగా మాట్లాడండి.`,
+    hi: `आप ${robotName} हैं, NEXUS टर्मिनल में Claude Sonnet AI। 2-3 संक्षिप्त हिंदी वाक्यों में उत्तर दें। बहुत हाल की खबरों के बारे में पूछे जाने पर ईमानदारी से कहें कि आपके पास नवीनतम जानकारी नहीं हो सकती।`,
   };
   return personas[langChoice]||personas.en;
 }
